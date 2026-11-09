@@ -1,0 +1,22 @@
+PLINK v2.0.0-a.7LM 64-bit Intel (11 Nov 2025)
+Options in effect:
+  --export A
+  --out data_plink_snp
+  --pfile data_ld_pruned
+  --threads 8
+
+Hostname: MiWiFi-RC01-srv
+Working directory: /data/zhgao/maize/data/Dyna_GPformer/plink2
+Start time: Sat Nov 22 20:51:22 2025
+
+Random number seed: 1763815882
+1031318 MiB RAM detected, ~997341 available; reserving 515659 MiB for main
+workspace.
+Using up to 8 compute threads.
+400 samples (0 females, 0 males, 400 ambiguous; 400 founders) loaded from
+data_ld_pruned.psam.
+2860770 variants loaded from data_ld_pruned.pvar.
+Note: No phenotype data present.
+--export A: data_plink_snp.raw written.
+
+End time: Sat Nov 22 20:51:27 2025

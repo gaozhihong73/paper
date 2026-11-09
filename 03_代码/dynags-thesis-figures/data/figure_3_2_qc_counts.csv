@@ -1,0 +1,7 @@
+﻿stage,label,condition,retained,removed,source
+1,Raw variants,VCF input,155985276,0,data_qc_strict.log
+2,Biallelic SNPs,A/C/G/T,124427523,31557753,data_qc_strict.log
+3,Missingness filter,Missing ≤ 5%,70760712,53666811,data_qc_strict.log
+4,HWE filter,p ≥ $10^{-6}$,66672806,4087906,data_qc_strict.log
+5,MAF filter,MAF ≥ 5%,18347296,48325510,data_qc_strict.log
+6,LD pruning,100 kb; r² = 0.2,2860770,15486526,ld_pruned.log

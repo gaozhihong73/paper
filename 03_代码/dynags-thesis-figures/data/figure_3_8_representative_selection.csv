@@ -1,0 +1,9 @@
+﻿panel,cluster_k8,cluster_size,selected_trait,selected_h2,selection_rule,cluster_members
+A,4,1,IKAW,0.743651989528694,highest H2 within provisional trajectory cluster,IKAW
+B,1,6,CIVE,0.844112389267488,highest H2 within provisional trajectory cluster,rn;ExR;NDI;COM;CIVE;RGB_R
+C,2,3,ExB,0.852784522539372,highest H2 within provisional trajectory cluster,ExB;ints;RGB_B
+D,3,1,bn,0.818819977426637,highest H2 within provisional trajectory cluster,bn
+E,8,1,RGB_G,0.815692631628819,highest H2 within provisional trajectory cluster,RGB_G
+F,5,10,RGBVI,0.861225238495476,highest H2 within provisional trajectory cluster,GLI2;GRVI;MGRVI;ExGR;veg;GreenCoverage;gn;ExG;GLI;RGBVI
+G,6,1,WI,0.857736442365474,highest H2 within provisional trajectory cluster,WI
+H,7,1,IPCA,0.799907287658675,highest H2 within provisional trajectory cluster,IPCA

@@ -1,0 +1,78 @@
+{
+    "best_epoch": 172,
+    "total_epochs": 200,
+    "best_val_loss": 0.2644343546458653,
+    "training_time_seconds": 301.8161573410034,
+    "final_lr": 1.432428568314728e-06,
+    "best_val_metrics": {
+        "mse": 0.27667421102523804,
+        "rmse": 0.4557840824127197,
+        "mae": 0.36104172468185425,
+        "pcc": 0.8492100834846497,
+        "r2": 0.7561205327510834,
+        "pcc_valid_count": 20,
+        "pcc_total_count": 20,
+        "pcc_valid_aggregate_count": 1
+    },
+    "best_val_pheno_metrics": {
+        "sim_pheno": {
+            "mse": 0.27667421102523804,
+            "rmse": 0.4557840824127197,
+            "mae": 0.36104172468185425,
+            "pcc": 0.8492100834846497,
+            "pcc_valid_count": 20,
+            "pcc_total_count": 20,
+            "r2": 0.7561205327510834
+        }
+    },
+    "test_results": {
+        "normalized": {
+            "phenotypes": {
+                "sim_pheno": {
+                    "mse": 0.2913203835487366,
+                    "rmse": 0.46818286180496216,
+                    "mae": 0.3740544319152832,
+                    "pcc": 0.8338306546211243,
+                    "pcc_valid_count": 20,
+                    "pcc_total_count": 20,
+                    "r2": 0.7470971345901489
+                }
+            },
+            "overall": {
+                "mse": 0.2913203835487366,
+                "rmse": 0.46818286180496216,
+                "mae": 0.3740544319152832,
+                "pcc": 0.8338306546211243,
+                "r2": 0.7470971345901489,
+                "pcc_valid_count": 20,
+                "pcc_total_count": 20,
+                "pcc_valid_aggregate_count": 1
+            }
+        },
+        "denormalized": {
+            "phenotypes": {
+                "sim_pheno": {
+                    "mse": 0.48629850149154663,
+                    "rmse": 0.6048972010612488,
+                    "mae": 0.48328232765197754,
+                    "pcc": 0.8338306546211243,
+                    "pcc_valid_count": 20,
+                    "pcc_total_count": 20,
+                    "r2": 0.7470970749855042
+                }
+            },
+            "overall": {
+                "mse": 0.48629850149154663,
+                "rmse": 0.6048972010612488,
+                "mae": 0.48328232765197754,
+                "pcc": 0.8338306546211243,
+                "r2": 0.7470970749855042,
+                "pcc_valid_count": 20,
+                "pcc_total_count": 20,
+                "pcc_valid_aggregate_count": 1
+            }
+        }
+    },
+    "purpose": "model_training",
+    "paper_eligible": true
+}

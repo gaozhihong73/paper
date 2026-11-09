@@ -1,0 +1,7 @@
+﻿component,measure,value,source
+Genotype,individuals,400,plink/data_ld_pruned.psam
+Genotype,LD-pruned candidate SNPs,2860770,plink/data_ld_pruned.log
+Phenotype,individuals per trait,400,pheno/*.csv
+Phenotype,candidate traits,24,pheno/*.csv
+Phenotype,time points,14,pheno/*.csv
+Selected set,representative traits,8,figure_3_8_representative_selection.csv

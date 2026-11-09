@@ -1,0 +1,24 @@
+PLINK v2.0.0-a.7LM 64-bit Intel (11 Nov 2025)
+Options in effect:
+  --indep-pairwise 100kb 1 0.2
+  --out ld_pruned
+  --pfile data_qc_strict
+  --threads 8
+
+Hostname: MiWiFi-RC01-srv
+Working directory: /data/zhgao/maize/data/DynaGS/plink
+Start time: Tue Mar 17 15:45:20 2026
+
+Random number seed: 1773733520
+1031318 MiB RAM detected, ~662300 available; reserving 515659 MiB for main
+workspace.
+Using up to 8 compute threads.
+400 samples (0 females, 0 males, 400 ambiguous; 400 founders) loaded from
+data_qc_strict.psam.
+18347296 variants loaded from data_qc_strict.pvar.
+Note: No phenotype data present.
+Calculating allele frequencies... done.
+--indep-pairwise (7 compute threads): 15486526/18347296 variants removed.
+Variant lists written to ld_pruned.prune.in and ld_pruned.prune.out .
+
+End time: Tue Mar 17 15:45:52 2026
