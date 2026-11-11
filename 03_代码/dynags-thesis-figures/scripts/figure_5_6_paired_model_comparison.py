@@ -1,4 +1,4 @@
-"""Forest plots using the supplied 5.3 per-run overall metrics directly."""
+"""Horizontal difference bars using supplied 5.3 per-run overall metrics directly."""
 
 from __future__ import annotations
 
@@ -84,47 +84,46 @@ def draw(summary: pd.DataFrame) -> dict:
     limits = {}
     with thesis_style(base_font_size=8):
         plt.rcParams["axes.unicode_minus"] = True
-        fig, axes = plt.subplots(1, 2, figsize=(6.3, 4.25), sharey=True)
-        y = np.arange(len(BASELINES))
+        fig, axes = plt.subplots(1, 2, figsize=(6.3, 4.15))
+        palette = {"pcc": ("#81ADC4", "#245D79"), "rmse": ("#8ABBB4", "#286A62")}
         for j, metric in enumerate(["pcc", "rmse"]):
             ax = axes[j]
-            part = summary[summary.metric == metric].set_index("baseline").loc[BASELINES]
-            finite = part[part.n_pairs > 0]
-            lower = min(0., float(finite.ci95_lower.min()))
-            upper = max(0., float(finite.ci95_upper.max()))
+            order = [model for model in BASELINES if not (metric == "pcc" and model == "Mean")]
+            part = summary[summary.metric == metric].set_index("baseline").loc[order]
+            assert (part.n_pairs == 10).all()
+            y = np.arange(len(part))
+            lower = min(0., float(part.ci95_lower.min()))
+            upper = max(0., float(part.ci95_upper.max()))
             span = upper-lower
-            xlim = (lower-.065*span, upper+.10*span)
+            xlim = (lower, upper+.26*span)
             limits[metric] = list(xlim)
+            fill, ink = palette[metric]
+            ax.barh(y, part.mean_difference, height=.57, color=fill, edgecolor="none", zorder=2)
             for index in y:
-                if index % 2 == 0:
-                    ax.axhspan(index-.5, index+.5, color="#F2F6F8", lw=0, zorder=0)
                 row = part.iloc[index]
-                if row.n_pairs == 0:
-                    ax.text(.5, index, "N/A", transform=ax.get_yaxis_transform(),
-                            ha="center", va="center", color="#75858E", fontsize=7.5)
-                    continue
                 ax.errorbar(row.mean_difference, index,
                             xerr=np.array([[row.mean_difference-row.ci95_lower],
                                            [row.ci95_upper-row.mean_difference]]),
-                            fmt="o", color="#0072B2", markersize=4.2,
-                            markeredgecolor="white", markeredgewidth=.55,
-                            elinewidth=1.05, capsize=2.4, capthick=.8, zorder=3)
-            ax.axvline(0, color="#8195A0", linestyle=(0, (3, 2)), linewidth=.85, zorder=2)
+                            fmt="none", color=ink, elinewidth=.95, capsize=2.3,
+                            capthick=.8, zorder=3)
+                ax.text(row.ci95_upper+.025*span, index, f"{row.mean_difference:.3f}",
+                        ha="left", va="center", fontsize=7, color=ink, zorder=4)
+            ax.axvline(0, color="#A3B4BD", linewidth=.7, zorder=1)
             ax.set_xlim(*xlim)
-            ax.set_ylim(len(BASELINES)-.45, -.6)
-            ax.set_yticks(y, labels=BASELINES)
-            ax.tick_params(axis="y", length=0, pad=7, labelsize=7.8)
+            ax.set_ylim(len(part)-.45, -.6)
+            ax.set_yticks(y, labels=order)
+            ax.tick_params(axis="y", length=0, pad=6, labelsize=7.4)
             ax.tick_params(axis="x", length=2.5, pad=3, labelsize=7)
             ax.spines["left"].set_visible(False)
             ax.spines["bottom"].set_color("#A7B8C0")
-            ax.grid(axis="x", color="#E2E9ED", linewidth=.5)
-            ax.set_title("A  PCC difference" if j == 0 else "B  RMSE reduction",
+            ax.grid(axis="x", color="#E5EBEF", linewidth=.5)
+            ax.set_title("A  PCC improvement" if j == 0 else "B  RMSE reduction",
                          loc="left", color="#193C51", fontsize=8.2, pad=9)
             ax.set_xlabel(r"$\Delta\mathrm{PCC}$" if j == 0 else r"$\Delta\mathrm{RMSE}$",
                           labelpad=6, fontsize=8)
-        fig.text(.5, .055, "Positive values favor DynaGS", ha="center", va="center",
+        fig.text(.5, .052, "Positive values favor DynaGS", ha="center", va="center",
                  fontsize=7.7, color="#455560")
-        fig.subplots_adjust(left=.19, right=.975, top=.90, bottom=.20, wspace=.22)
+        fig.subplots_adjust(left=.17, right=.985, top=.90, bottom=.20, wspace=.70)
         fig.savefig(OUTPUT, dpi=600, facecolor="white")
         plt.close(fig)
     return limits
@@ -143,11 +142,13 @@ if __name__ == "__main__":
                 "condition": {"snps": 10000, "n_train": 400, "heritability": .8},
                 "directions": {"pcc": "PCC_DynaGS minus PCC_baseline",
                                "rmse": "RMSE_baseline minus RMSE_DynaGS"},
-                "point": "Arithmetic mean of 10 within-repeat paired differences.",
+                "bar_and_numeric_label": "Arithmetic mean of 10 within-repeat paired differences.",
                 "interval": "Percentile 95% paired bootstrap confidence interval; 10000 resamples "
                             "of the 10 repeat-level differences, seed 73. Identical resample "
                             "indices used across baselines and metrics.",
-                "mean_baseline": "PCC is undefined and displayed as N/A; RMSE comparison uses 10 pairs.",
+                "mean_baseline": "Omitted from PCC panel; included in RMSE panel with 10 pairs.",
+                "display": "Horizontal bars with paired 95% confidence intervals and 3-decimal "
+                           "mean labels. Each panel has its own model labels; input order retained.",
                 "baseline_order": BASELINES, "axis_limits": limits,
                 "figure": str(OUTPUT.relative_to(ROOT))}
     (DATA / f"{STEM}.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
