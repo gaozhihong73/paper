@@ -50,6 +50,24 @@ def collect() -> tuple[pd.DataFrame, dict]:
         "new_sample_id": high["sample_id"], "new_sample_index": high["sample_index_zero_based"],
         "rule": "Nearest alternative to the 90th percentile of mean observed test phenotype, "
                 "excluding the original high-level individual; ties use original row index."}
+    median = next(person for person in selection["individuals"] if person["level"] == "Median")
+    original_median_id = median["sample_id"]
+    original_median_index = median["sample_index_zero_based"]
+    target = float(np.quantile(means, .5))
+    order = np.lexsort((test_indices, np.abs(means-target)))
+    excluded = {person["sample_index_zero_based"] for person in selection["individuals"]}
+    location = next(int(k) for k in order if test_indices[k] not in excluded)
+    median.update({"sample_id": str(sample_ids[location]),
+                   "sample_index_zero_based": int(test_indices[location]),
+                   "target_observed_mean": target, "selected_observed_mean": float(means[location])})
+    selection["median_replacement"] = {
+        "requested_change": "Another median-observed-level individual for visual inspection.",
+        "original_sample_id": original_median_id, "original_sample_index": original_median_index,
+        "new_sample_id": median["sample_id"], "new_sample_index": median["sample_index_zero_based"],
+        "rule": "Nearest alternative to the median of mean observed test phenotype, excluding "
+                "the original median individual and the displayed low/high individuals; "
+                "ties use original row index."}
+    assert len({person["sample_index_zero_based"] for person in selection["individuals"]}) == 3
     rows = []
     reference = {}
     for model, folder in MODELS.items():
@@ -142,11 +160,11 @@ if __name__ == "__main__":
                 "source_values": "Saved 5.3 test_predictions.npz prediction and target arrays, "
                                  "aligned by test sample index and time coordinate.",
                 "selection_record": str(SELECTION.relative_to(ROOT)),
-                "selection": "Retain the low and median individuals fixed for figure 5-1. "
-                             "At the user's request, replace the high-level individual by the "
-                             "nearest alternative to the 90th percentile of observed test means. "
+                "selection": "Retain the low individual fixed for figure 5-1. At the user's request, "
+                             "replace the high and median individuals by the nearest alternatives "
+                             "to their observed-level quantiles (90th percentile and median). "
                              "All plotted trajectories are read from 5.3.",
-                "replacement": selection["replacement"],
+                "replacements": [selection["replacement"], selection["median_replacement"]],
                 "individuals": selection["individuals"], "models": list(MODELS),
                 "display": "Upper row: observed points and predicted values joined by straight "
                            "segments across all 20 saved time points. Lower row: predicted minus "
