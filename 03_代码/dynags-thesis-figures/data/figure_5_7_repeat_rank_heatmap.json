@@ -1,0 +1,33 @@
+{
+  "source": "Direct reading of supplied 5.3 metrics.json overall fields via figure_5_6_paired_model_comparison.collect; no prediction-based recomputation.",
+  "n_models": 12,
+  "n_repeats": 10,
+  "ranking_unit": "Within the same independent repeat, across defined models.",
+  "directions": {
+    "pcc": "Descending",
+    "r2_time": "Descending",
+    "rmse": "Ascending"
+  },
+  "ties": "Exact ties receive the minimum occupied rank (competition ranking): 1,2,2,4.",
+  "undefined": "Mean PCC is excluded from ranking and displayed with a grey hatched row. PCC ranks cover 11 models; R2 and RMSE ranks cover 12.",
+  "color_limits": [
+    0.5,
+    12.5
+  ],
+  "color": "Darker blue denotes a better (smaller) rank.",
+  "model_order": [
+    "Mean",
+    "Ridge-All",
+    "Ridge-A+D",
+    "GBLUP-All",
+    "RR-GBLUP",
+    "Random Forest",
+    "XGBoost",
+    "DNNGP-SNP",
+    "DLGWAS",
+    "WheatGP",
+    "Cropformer",
+    "DynaGS"
+  ],
+  "figure": "07_\u8bba\u6587\u56fe\u8868\\5-7_\u4e0d\u540c\u6a21\u578b\u5728\u72ec\u7acb\u91cd\u590d\u4e2d\u7684\u9884\u6d4b\u6027\u80fd\u6392\u540d.png"
+}
