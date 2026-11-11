@@ -2,7 +2,8 @@
   "source_root": "05_\u5b9e\u9a8c\u7ed3\u679c\\5.3\\P10000_NTR400_H0.8\\rep_01",
   "source_values": "Saved 5.3 test_predictions.npz prediction and target arrays, aligned by test sample index and time coordinate.",
   "selection_record": "03_\u4ee3\u7801\\dynags-thesis-figures\\data\\figure_5_1_representative_predictions.json",
-  "selection": "Retain the low individual fixed for figure 5-1. At the user's request, replace the high and median individuals by the nearest alternatives to their observed-level quantiles (90th percentile and median). All plotted trajectories are read from 5.3.",
+  "selection": "Retain the low individual fixed for figure 5-1 and the high-level alternative nearest the 90th percentile. The middle panel is explicitly selected for favorable DynaGS individual RMSE relative to all three baselines within the middle third of observed phenotype levels. All plotted trajectories are read from 5.3.",
+  "middle_candidate_table": "03_\u4ee3\u7801\\dynags-thesis-figures\\data\\figure_5_9_individual_model_trajectories_middle_candidates.csv",
   "replacements": [
     {
       "requested_change": "Another high-observed-level individual for visual inspection.",
@@ -13,12 +14,26 @@
       "rule": "Nearest alternative to the 90th percentile of mean observed test phenotype, excluding the original high-level individual; ties use original row index."
     },
     {
-      "requested_change": "Another median-observed-level individual for visual inspection.",
+      "requested_change": "A middle-level illustrative case where DynaGS predicts well.",
       "original_sample_id": "ID23",
       "original_sample_index": 22,
-      "new_sample_id": "ID493",
-      "new_sample_index": 492,
-      "rule": "Nearest alternative to the median of mean observed test phenotype, excluding the original median individual and the displayed low/high individuals; ties use original row index."
+      "previous_displayed_sample_id": "ID493",
+      "new_sample_id": "ID477",
+      "new_sample_index": 476,
+      "rule": "Within the middle third of observed test-individual means, excluding the displayed low/high individuals and previous middle examples ID23 and ID493, select the largest (best baseline individual RMSE minus DynaGS individual RMSE). Break ties by lower DynaGS RMSE and then original row index. This is a performance-selected illustrative example.",
+      "individual_rmse_definition": "sqrt(mean over the 20 times of (prediction-observed)^2)",
+      "middle_group_mean_bounds": [
+        17.412688956658045,
+        18.307647027571996
+      ],
+      "candidate_count": 14,
+      "individual_rmse": {
+        "DynaGS": 0.5693583152777494,
+        "XGBoost": 0.7462249289653793,
+        "Random Forest": 0.6896167835795122,
+        "Cropformer": 0.6672248405149205
+      },
+      "advantage_over_best_baseline": 0.0978665252371711
     }
   ],
   "individuals": [
@@ -33,12 +48,12 @@
     },
     {
       "panel": "B",
-      "level": "Median",
-      "sample_id": "ID493",
-      "sample_index_zero_based": 492,
-      "observed_level_quantile": 0.5,
-      "target_observed_mean": 17.844382484257224,
-      "selected_observed_mean": 17.842387413978578
+      "level": "Middle",
+      "sample_id": "ID477",
+      "sample_index_zero_based": 476,
+      "selected_observed_mean": 17.961413177847863,
+      "observed_mean_percentile_rank": 57.99999999999999,
+      "group": "Middle third of observed test-individual means"
     },
     {
       "panel": "C",
