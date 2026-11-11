@@ -28,6 +28,28 @@ OUTPUT = ROOT / "07_论文图表" / "5-9_代表测试个体的模型预测轨迹
 def collect() -> tuple[pd.DataFrame, dict]:
     selection = json.loads(SELECTION.read_text(encoding="utf-8"))
     assert selection["condition"] == BASE.parent.name and selection["repeat"] == BASE.name
+    high = next(person for person in selection["individuals"] if person["level"] == "High")
+    original_id = high["sample_id"]
+    original_index = high["sample_index_zero_based"]
+    # The user requested another high-level example. Choose the next nearest
+    # observed-level candidate, excluding the original individual, before reading errors.
+    # The supplied NumPy archive stores its sample IDs as an object array.
+    with np.load(BASE / "dynags/test_predictions.npz", allow_pickle=True) as archive:
+        test_indices = archive["sample_idx"]
+        sample_ids = archive["sample_id"]
+        means = archive["target"].astype(float).mean(axis=1)
+    target = float(np.quantile(means, .9))
+    order = np.lexsort((test_indices, np.abs(means-target)))
+    location = next(int(k) for k in order if test_indices[k] != original_index)
+    high.update({"sample_id": str(sample_ids[location]),
+                 "sample_index_zero_based": int(test_indices[location]),
+                 "target_observed_mean": target, "selected_observed_mean": float(means[location])})
+    selection["replacement"] = {
+        "requested_change": "Another high-observed-level individual for visual inspection.",
+        "original_sample_id": original_id, "original_sample_index": original_index,
+        "new_sample_id": high["sample_id"], "new_sample_index": high["sample_index_zero_based"],
+        "rule": "Nearest alternative to the 90th percentile of mean observed test phenotype, "
+                "excluding the original high-level individual; ties use original row index."}
     rows = []
     reference = {}
     for model, folder in MODELS.items():
@@ -62,7 +84,7 @@ def collect() -> tuple[pd.DataFrame, dict]:
 
 def draw(data: pd.DataFrame) -> dict:
     upper_limit = float(np.ceil(data[["observed", "prediction"]].to_numpy().max()/5)*5)
-    residual_limit = float(np.ceil(data.residual.abs().max()/.5)*.5)
+    residual_limit = max(4., float(np.ceil(data.residual.abs().max()/.5)*.5))
     with thesis_style(base_font_size=8):
         plt.rcParams["axes.unicode_minus"] = True
         fig, axes = plt.subplots(2, 3, figsize=(6.3, 4.8), sharex=True, sharey="row")
@@ -85,7 +107,7 @@ def draw(data: pd.DataFrame) -> dict:
                                  loc="left", fontsize=8, color="#193C51", pad=7)
             axes[1, j].axhline(0, color="#8DA0AC", lw=.7, linestyle=(0, (3, 2)), zorder=1)
             axes[1, j].set_ylim(-residual_limit, residual_limit)
-            axes[1, j].set_yticks([-4, -2, 0, 2, 4])
+            axes[1, j].set_yticks(np.linspace(-residual_limit, residual_limit, 5))
             axes[1, j].set_title(f"{'DEF'[j]}  Prediction residuals", loc="left",
                                  fontsize=8, color="#193C51", pad=7)
             for ax in axes[:, j]:
@@ -120,9 +142,11 @@ if __name__ == "__main__":
                 "source_values": "Saved 5.3 test_predictions.npz prediction and target arrays, "
                                  "aligned by test sample index and time coordinate.",
                 "selection_record": str(SELECTION.relative_to(ROOT)),
-                "selection": "Reuse the three individuals fixed for figure 5-1; read all plotted "
-                             "trajectory values from 5.3 only. Selection uses observed level rather "
-                             "than prediction errors.",
+                "selection": "Retain the low and median individuals fixed for figure 5-1. "
+                             "At the user's request, replace the high-level individual by the "
+                             "nearest alternative to the 90th percentile of observed test means. "
+                             "All plotted trajectories are read from 5.3.",
+                "replacement": selection["replacement"],
                 "individuals": selection["individuals"], "models": list(MODELS),
                 "display": "Upper row: observed points and predicted values joined by straight "
                            "segments across all 20 saved time points. Lower row: predicted minus "

@@ -2,7 +2,15 @@
   "source_root": "05_\u5b9e\u9a8c\u7ed3\u679c\\5.3\\P10000_NTR400_H0.8\\rep_01",
   "source_values": "Saved 5.3 test_predictions.npz prediction and target arrays, aligned by test sample index and time coordinate.",
   "selection_record": "03_\u4ee3\u7801\\dynags-thesis-figures\\data\\figure_5_1_representative_predictions.json",
-  "selection": "Reuse the three individuals fixed for figure 5-1; read all plotted trajectory values from 5.3 only. Selection uses observed level rather than prediction errors.",
+  "selection": "Retain the low and median individuals fixed for figure 5-1. At the user's request, replace the high-level individual by the nearest alternative to the 90th percentile of observed test means. All plotted trajectories are read from 5.3.",
+  "replacement": {
+    "requested_change": "Another high-observed-level individual for visual inspection.",
+    "original_sample_id": "ID359",
+    "original_sample_index": 358,
+    "new_sample_id": "ID24",
+    "new_sample_index": 23,
+    "rule": "Nearest alternative to the 90th percentile of mean observed test phenotype, excluding the original high-level individual; ties use original row index."
+  },
   "individuals": [
     {
       "panel": "A",
@@ -25,11 +33,11 @@
     {
       "panel": "C",
       "level": "High",
-      "sample_id": "ID359",
-      "sample_index_zero_based": 358,
+      "sample_id": "ID24",
+      "sample_index_zero_based": 23,
       "observed_level_quantile": 0.9,
-      "target_observed_mean": 19.167530869,
-      "selected_observed_mean": 19.130685545
+      "target_observed_mean": 19.167530903816225,
+      "selected_observed_mean": 19.109998005628587
     }
   ],
   "models": [
