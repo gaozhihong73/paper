@@ -1,0 +1,22 @@
+﻿model,metric,mean_difference,ci95_lower,ci95_upper,n_repeats
+Ridge,pcc,0.16,0.132,0.189,10
+Ridge,r2,0.093,0.07,0.117,10
+Ridge,rmse,0.059,0.042,0.076,10
+RR-GBLUP,pcc,0.136,0.114,0.158,10
+RR-GBLUP,r2,0.07,0.056,0.083,10
+RR-GBLUP,rmse,0.043,0.034,0.051,10
+Random Forest,pcc,0.07,0.057,0.082,10
+Random Forest,r2,0.032,0.02,0.045,10
+Random Forest,rmse,0.021,0.013,0.029,10
+XGBoost,pcc,0.047,0.041,0.053,10
+XGBoost,r2,0.031,0.02,0.042,10
+XGBoost,rmse,0.02,0.013,0.027,10
+DNNGP-SNP,pcc,0.199,0.17,0.228,10
+DNNGP-SNP,r2,0.129,0.108,0.151,10
+DNNGP-SNP,rmse,0.083,0.068,0.098,10
+Cropformer,pcc,0.321,0.28,0.362,10
+Cropformer,r2,0.196,0.17,0.221,10
+Cropformer,rmse,0.123,0.102,0.143,10
+DynaGS,pcc,0.216,0.187,0.245,10
+DynaGS,r2,0.118,0.096,0.14,10
+DynaGS,rmse,0.104,0.089,0.119,10

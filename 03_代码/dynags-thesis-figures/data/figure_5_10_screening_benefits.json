@@ -1,0 +1,45 @@
+{
+  "source": "05_实验结果\\5.4\\E5_Table.md",
+  "source_sha256": "319219b5f2f5152fd4912924e57fde734f3a19680ee0409ad09b111cb316016c",
+  "source_section": "Table E5a. Effect of SNP screening",
+  "source_values": "Reported means and 95% confidence limits read directly from the supplied table.",
+  "n_repeats": 10,
+  "point": "Mean within-model paired screening benefit reported in the source.",
+  "interval": "95% confidence interval reported in the source; used without recalculation.",
+  "directions": {
+    "pcc": "PCC_screened minus PCC_all",
+    "r2": "R2_screened minus R2_all",
+    "rmse": "RMSE_all minus RMSE_screened"
+  },
+  "models": [
+    "Ridge",
+    "RR-GBLUP",
+    "Random Forest",
+    "XGBoost",
+    "DNNGP-SNP",
+    "Cropformer",
+    "DynaGS"
+  ],
+  "displayed_metrics": [
+    "pcc",
+    "rmse"
+  ],
+  "axis_limits": {
+    "pcc": [
+      -0.02,
+      0.4
+    ],
+    "rmse": [
+      -0.008,
+      0.16
+    ]
+  },
+  "figure_size_inches": [
+    6.3,
+    3.35
+  ],
+  "dpi": 600,
+  "figure": "07_论文图表\\5-10_同一模型筛选前后的预测收益.png",
+  "caption": "图 5-10 同一模型筛选前后的预测收益",
+  "caption_note": "A：PCC 提升；B：RMSE 降低。点表示 10 次独立重复的配对收益均值，误差线表示所提供汇总结果中的 95% 置信区间。ΔPCC 为筛选后减筛选前，ΔRMSE 为筛选前减筛选后，正值均表示筛选带来预测收益。"
+}
