@@ -70,15 +70,6 @@ def draw(data: pd.DataFrame) -> None:
             if metric == "pcc":
                 ax.add_patch(Rectangle((-.5, -.5), 10, 1, facecolor="#EDF0F2",
                                        edgecolor="#AFBDC6", hatch="///", lw=0, zorder=2))
-            for row in range(len(ORDER)):
-                for col in range(10):
-                    rank = values[row, col]
-                    if not np.isfinite(rank):
-                        continue
-                    rgba = cmap(norm(rank))
-                    luminance = .2126*rgba[0] + .7152*rgba[1] + .0722*rgba[2]
-                    ax.text(col, row, str(int(rank)), ha="center", va="center", fontsize=6.8,
-                            color="white" if luminance < .53 else "#193C51", zorder=3)
             ax.set_xticks(np.arange(10), labels=[str(i) for i in range(1, 11)])
             ax.set_yticks(np.arange(len(ORDER)), labels=ORDER if j == 0 else [])
             ax.tick_params(axis="x", length=0, pad=5, labelsize=7)
@@ -122,6 +113,7 @@ if __name__ == "__main__":
                 "undefined": "Mean PCC is excluded from ranking and displayed with a grey hatched row. "
                              "PCC ranks cover 11 models; R2 and RMSE ranks cover 12.",
                 "color_limits": [.5, 12.5], "color": "Darker blue denotes a better (smaller) rank.",
+                "cell_labels": "Colors only; numeric ranks are retained in the CSV data.",
                 "model_order": ORDER, "figure": str(OUTPUT.relative_to(ROOT))}
     (DATA / f"{STEM}.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
     print(summary[summary.model == "DynaGS"].to_string(index=False))

@@ -1,0 +1,13 @@
+{
+  "runs": 600,
+  "conditions": 30,
+  "repeats_per_setting_per_condition": 10,
+  "interval": "Two-sided Student t 95% confidence interval of the repeat mean, mean +/- t(0.975,9) * sample SD / sqrt(10).",
+  "metrics": {
+    "pcc": "Mean across defined time-point Pearson correlations over individuals.",
+    "r2_time": "1 - total SSE / sum of squared deviations from each test time mean.",
+    "rmse": "Arithmetic mean of original-scale time-point RMSE values."
+  },
+  "x_axis": "Training individuals, logarithmic scale base 2.",
+  "figure": "07_\u8bba\u6587\u56fe\u8868\\5-2_\u4e0d\u540c\u6a21\u62df\u6761\u4ef6\u4e0b\u7684\u7eb5\u5411\u8868\u578b\u9884\u6d4b\u6027\u80fd.png"
+}

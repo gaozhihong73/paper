@@ -1,0 +1,89 @@
+{
+  "source_root": "05_实验结果\\5.5\\outputs\\tfpp\\maize",
+  "source_files_sha256": {
+    "analysis/representative_samples.csv": "90daf6ee21081678747cb3c4a23b37c1b3cdabc28b24c04ede81a573786dde4c",
+    "analysis/representative_trajectories.csv": "45b0f520a9369246156c593d50528bf45e27a8a42a75a5dd9c182acc9a2d3053",
+    "protocol.json": "f53af9359e449e14554c2bf72a899fe72e477bef164b21431c36d1a0d7dc2936",
+    "sample_ids.csv": "4a14d21b4f2564e76e49323e172fb997a1c8dbd6c56fba9d85369a6a09b5a288",
+    "shared/repeat_01/fold_01/split.npz": "a3b3f662c4b672c5b910d6e70cd792a6876d5f7452caa2a40d713204616b1a9d",
+    "shared/repeat_01/fold_02/split.npz": "693f0c2661325b727fd73633dcba393ea23326edd7f4c1d9661018a59dde4498",
+    "shared/repeat_01/fold_03/split.npz": "bc8c7f8432b90ad73f09d29ca5569e294cc621951b66e8d4c4b401e67560c7ea",
+    "shared/repeat_01/fold_05/split.npz": "00e6ef31a24147f7df119ef9a4e304d4ba6c5d3a54b458567d23998085aed917"
+  },
+  "source_values": "Directly plotted the supplied observed and predicted values from representative_trajectories.csv.",
+  "sample_selection": "Used all nine individuals already listed in representative_samples.csv, preserving supplied low/middle/high strata and sample identities.",
+  "sample_id_meaning": "The supplied row-index sample IDs, displayed as Sample plus the exported ID.",
+  "checks": "Same sample IDs, repeat, outer fold, all fourteen actual times and identical observed values across models; outer-test membership and row-ID mapping checked.",
+  "layout": "Three rows (RGBVI, CIVE, IPCA) by three columns (low, middle, high observed level); shared y limits within each trait.",
+  "models": [
+    "DynaGS",
+    "Cropformer"
+  ],
+  "styles": {
+    "Observed": {
+      "color": "#606C76",
+      "linestyle": "-",
+      "marker": "o"
+    },
+    "DynaGS": {
+      "color": "#0072B2",
+      "linestyle": "-",
+      "marker": "o"
+    },
+    "Cropformer": {
+      "color": "#AA4499",
+      "linestyle": [
+        0,
+        [
+          5,
+          1.7,
+          1,
+          1.7
+        ]
+      ],
+      "marker": "D"
+    }
+  },
+  "times": [
+    10.0,
+    12.0,
+    14.0,
+    15.0,
+    17.0,
+    19.0,
+    24.0,
+    26.0,
+    37.0,
+    44.0,
+    51.0,
+    65.0,
+    80.0,
+    101.0
+  ],
+  "n_representative_samples": 9,
+  "n_trajectory_records": 252,
+  "line": "Straight segments connecting all fourteen supplied time-point values for each single individual; no smoothing or averaging.",
+  "markers": "All observed points displayed; model markers at indices 0, 4, 8, 11, 13 while model lines include all fourteen values.",
+  "axis_limits": {
+    "RGBVI": [
+      0.017046810375000002,
+      0.422234354625
+    ],
+    "CIVE": [
+      -11.5930959,
+      21.6651479
+    ],
+    "IPCA": [
+      67.40626895,
+      97.29754505
+    ]
+  },
+  "figure_size_inches": [
+    6.3,
+    5.65
+  ],
+  "dpi": 600,
+  "figure": "07_论文图表\\5-13_真实玉米代表个体的表型预测轨迹.png",
+  "caption": "图 5-13 真实玉米代表个体的表型预测轨迹",
+  "caption_note": "每行依次为 RGBVI、CIVE 和 IPCA，每列依次为已提供代表样本清单中的低、中、高观测水平个体。灰色曲线为观测值，蓝色和紫色曲线分别为 DynaGS 与 Cropformer 的折外预测。各面板保留实际观测时间和性状原始尺度，同一性状采用相同纵轴范围。面板中的 Sample 编号沿用结果文件中的样本编号。"
+}

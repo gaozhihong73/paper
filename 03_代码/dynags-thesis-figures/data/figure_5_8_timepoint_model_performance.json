@@ -1,0 +1,78 @@
+{
+  "source_root": "05_\u5b9e\u9a8c\u7ed3\u679c\\5.3\\P10000_NTR400_H0.8",
+  "source_fields": [
+    "metrics.json/by_time/pcc",
+    "metrics.json/by_time/rmse"
+  ],
+  "source_values": "Supplied 5.3 saved metrics, read directly without prediction-based recomputation.",
+  "condition": {
+    "snps": 10000,
+    "n_train": 400,
+    "heritability": 0.8
+  },
+  "models": [
+    "DynaGS",
+    "XGBoost",
+    "Random Forest",
+    "Cropformer"
+  ],
+  "n_repeats": 10,
+  "n_time_points": 20,
+  "model_selection": "Pre-specified set used in the experimental figure plan.",
+  "line": "Arithmetic mean across 10 independent repetitions at each time point.",
+  "band": "Percentile 95% confidence interval of the repeat-level mean, 10000 bootstrap resamples; seed 73. Identical repeat resamples used across models, metrics and times.",
+  "markers": "Markers are displayed at selected time points for readability; all 20 saved time-point means determine each line and confidence band.",
+  "styles": {
+    "DynaGS": {
+      "color": "#0072B2",
+      "linestyle": "-",
+      "marker": "o"
+    },
+    "XGBoost": {
+      "color": "#882255",
+      "linestyle": [
+        0,
+        [
+          5,
+          2
+        ]
+      ],
+      "marker": "s"
+    },
+    "Random Forest": {
+      "color": "#CC79A7",
+      "linestyle": [
+        0,
+        [
+          1,
+          1.7
+        ]
+      ],
+      "marker": "^"
+    },
+    "Cropformer": {
+      "color": "#AA4499",
+      "linestyle": [
+        0,
+        [
+          5,
+          1.7,
+          1,
+          1.7
+        ]
+      ],
+      "marker": "D"
+    }
+  },
+  "axis_limits": {
+    "pcc": [
+      0.0,
+      1.0
+    ],
+    "rmse": [
+      0.0,
+      2.227031627667132
+    ]
+  },
+  "figure": "07_\u8bba\u6587\u56fe\u8868\\5-8_\u4ee3\u8868\u6a21\u578b\u5728\u4e0d\u540c\u65f6\u95f4\u70b9\u7684\u9884\u6d4b\u6027\u80fd.png"
+}

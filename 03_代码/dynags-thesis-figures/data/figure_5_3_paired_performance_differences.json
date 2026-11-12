@@ -1,0 +1,27 @@
+{
+  "source": "03_\u4ee3\u7801\\dynags-thesis-figures\\data\\figure_5_2_simulation_performance_runs.csv",
+  "n_pairs_per_cell": 10,
+  "aggregation": "Within each condition, calculate the paired difference for each repeat, then the arithmetic mean over 10 repeats.",
+  "directions": {
+    "pcc": "Screened minus Oracle",
+    "r2_time": "Screened minus Oracle",
+    "rmse": "Oracle minus Screened"
+  },
+  "color": "Orange = negative; white = zero; blue = positive. Symmetric limits shared by SNP sizes within each metric.",
+  "color_limits": {
+    "pcc": [
+      -0.30000000000000004,
+      0.30000000000000004
+    ],
+    "r2_time": [
+      -0.16,
+      0.16
+    ],
+    "rmse": [
+      -0.08,
+      0.08
+    ]
+  },
+  "annotation": "Mean paired difference rounded to 3 decimal places; no significance tests.",
+  "figure": "07_\u8bba\u6587\u56fe\u8868\\5-3_\u4e24\u79cdSNP\u8f93\u5165\u8bbe\u7f6e\u7684\u914d\u5bf9\u9884\u6d4b\u6027\u80fd\u5dee\u5f02.png"
+}

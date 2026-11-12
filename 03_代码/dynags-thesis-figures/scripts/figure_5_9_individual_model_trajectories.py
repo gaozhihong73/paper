@@ -27,6 +27,7 @@ OUTPUT = ROOT / "07_论文图表" / "5-9_代表测试个体的模型预测轨迹
 
 def collect() -> tuple[pd.DataFrame, dict]:
     selection = json.loads(SELECTION.read_text(encoding="utf-8"))
+    selection = selection.get("initial_selection", selection)
     assert selection["condition"] == BASE.parent.name and selection["repeat"] == BASE.name
     high = next(person for person in selection["individuals"] if person["level"] == "High")
     original_id = high["sample_id"]
@@ -195,6 +196,7 @@ if __name__ == "__main__":
                 "source_values": "Saved 5.3 test_predictions.npz prediction and target arrays, "
                                  "aligned by test sample index and time coordinate.",
                 "selection_record": str(SELECTION.relative_to(ROOT)),
+                "selection_record_key": "initial_selection",
                 "selection": "Retain the low individual fixed for figure 5-1 and the high-level "
                              "alternative nearest the 90th percentile. The middle panel is explicitly "
                              "selected for favorable DynaGS individual RMSE relative to all three "

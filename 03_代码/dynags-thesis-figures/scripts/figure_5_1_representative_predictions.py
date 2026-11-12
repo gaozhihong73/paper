@@ -1,4 +1,4 @@
-"""Plot three predetermined observed-level quantiles from the first simulation repeat."""
+"""Plot the three user-fixed simulation examples synchronized with figure 5-9."""
 
 from __future__ import annotations
 
@@ -23,6 +23,7 @@ REPEAT = "rep_01"
 RELATIVE = Path(CONDITION) / REPEAT
 STEM = "figure_5_1_representative_predictions"
 OUTPUT = ROOT / "07_论文图表" / "5-1_模拟测试个体的纵向表型预测轨迹.png"
+INDIVIDUALS = [("A", "Low", "ID113"), ("B", "Middle", "ID477"), ("C", "High", "ID24")]
 
 
 def prepare() -> tuple[pd.DataFrame, dict]:
@@ -48,16 +49,25 @@ def prepare() -> tuple[pd.DataFrame, dict]:
         assert np.allclose(test_observed, run["targets"][:, 0, :], atol=1e-5)
         assert np.isfinite(run["predictions"]).all()
     levels = test_observed.mean(axis=1)
-    choices = []
-    rows = []
+    initial_choices = []
     for panel, label, quantile in zip("ABC", ["Low", "Median", "High"], [.1, .5, .9]):
         target = float(np.quantile(levels, quantile))
         # Distance to the observed-level quantile, then original row index, breaks ties.
         k = int(np.lexsort((indices, np.abs(levels - target)))[0])
         i = int(indices[k])
-        choices.append({"panel": panel, "level": label, "sample_id": ids[i],
-                        "sample_index_zero_based": i, "observed_level_quantile": quantile,
-                        "target_observed_mean": target, "selected_observed_mean": float(levels[k])})
+        initial_choices.append({"panel": panel, "level": label, "sample_id": ids[i],
+                                "sample_index_zero_based": i, "observed_level_quantile": quantile,
+                                "target_observed_mean": target, "selected_observed_mean": float(levels[k])})
+    choices = []
+    rows = []
+    for panel, label, sample_id in INDIVIDUALS:
+        i = ids.index(sample_id)
+        locations = np.flatnonzero(indices == i)
+        assert len(locations) == 1
+        k = int(locations[0])
+        choices.append({"panel": panel, "level": label, "sample_id": sample_id,
+                        "sample_index_zero_based": i, "selected_observed_mean": float(levels[k]),
+                        "observed_mean_percentile_rank": float(100*np.mean(levels <= levels[k]))})
         for j, t in enumerate(time):
             rows.append({"condition": CONDITION, "repeat": REPEAT, "panel": panel,
                          "level": label, "sample_id": ids[i], "time": t,
@@ -67,9 +77,14 @@ def prepare() -> tuple[pd.DataFrame, dict]:
                          "screened": runs["screened"]["predictions"][k, 0, j]})
     assert len({x["sample_id"] for x in choices}) == 3
     meta = {"condition": CONDITION, "repeat": REPEAT, "test_individual_count": len(indices),
-            "selection": "Nearest to 10th, 50th and 90th percentiles of mean observed test "
-                         "phenotype across all 20 time points; ties use original row index. "
-                         "Selection does not use prediction errors.",
+            "selection": "User-fixed examples ID113, ID477 and ID24, matching figure 5-9. "
+                         "ID113 came from the original low-level selection; ID24 was the nearest "
+                         "alternative high-level example; ID477 was previously selected as a "
+                         "DynaGS-favorable middle-level illustrative case in the 5.3 model comparison.",
+            "initial_selection": {"condition": CONDITION, "repeat": REPEAT,
+                                  "test_individual_count": len(indices),
+                                  "selection": "Original quantile-based selection before user-requested replacements.",
+                                  "individuals": initial_choices},
             "curve_display": "Saved values at observed time points, joined by straight segments; "
                              "no smoothing or interpolation of additional values.",
             "individuals": choices,

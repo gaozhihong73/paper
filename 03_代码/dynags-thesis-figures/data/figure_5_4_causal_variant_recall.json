@@ -1,0 +1,10 @@
+{
+  "formula": "Exact Recall@20 = number of true causal SNPs in the saved 20-SNP selected set / 20 true causal SNPs.",
+  "n_conditions": 30,
+  "n_repeats_per_condition": 10,
+  "n_runs": 300,
+  "truth_index_conversion": "Raw causal_effects.csv snp_index is one based; subtract one to match screened_indices.npy. Converted truth matches saved oracle indices in all 300 runs.",
+  "boxplot": "Box = 25th-75th percentiles; horizontal line = median; whiskers extend to the most extreme actual values within 1.5 IQR. Every repeat is shown, including values beyond the whiskers.",
+  "points": "One dot per independent repeat. Identical recall values are spread horizontally in repeat-number order; no vertical jitter.",
+  "figure": "07_\u8bba\u6587\u56fe\u8868\\5-4_\u4e0d\u540c\u6a21\u62df\u6761\u4ef6\u4e0b\u7684\u56e0\u679c\u4f4d\u70b9\u53ec\u56de\u7387.png"
+}

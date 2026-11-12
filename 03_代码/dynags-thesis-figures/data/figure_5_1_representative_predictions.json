@@ -2,7 +2,42 @@
   "condition": "P10000_NTR400_H0.8",
   "repeat": "rep_01",
   "test_individual_count": 50,
-  "selection": "Nearest to 10th, 50th and 90th percentiles of mean observed test phenotype across all 20 time points; ties use original row index. Selection does not use prediction errors.",
+  "selection": "User-fixed examples ID113, ID477 and ID24, matching figure 5-9. ID113 came from the original low-level selection; ID24 was the nearest alternative high-level example; ID477 was previously selected as a DynaGS-favorable middle-level illustrative case in the 5.3 model comparison.",
+  "initial_selection": {
+    "condition": "P10000_NTR400_H0.8",
+    "repeat": "rep_01",
+    "test_individual_count": 50,
+    "selection": "Original quantile-based selection before user-requested replacements.",
+    "individuals": [
+      {
+        "panel": "A",
+        "level": "Low",
+        "sample_id": "ID113",
+        "sample_index_zero_based": 112,
+        "observed_level_quantile": 0.1,
+        "target_observed_mean": 16.697707513,
+        "selected_observed_mean": 16.706701775
+      },
+      {
+        "panel": "B",
+        "level": "Median",
+        "sample_id": "ID23",
+        "sample_index_zero_based": 22,
+        "observed_level_quantile": 0.5,
+        "target_observed_mean": 17.84438245925,
+        "selected_observed_mean": 17.8463774885
+      },
+      {
+        "panel": "C",
+        "level": "High",
+        "sample_id": "ID359",
+        "sample_index_zero_based": 358,
+        "observed_level_quantile": 0.9,
+        "target_observed_mean": 19.167530869,
+        "selected_observed_mean": 19.130685545
+      }
+    ]
+  },
   "curve_display": "Saved values at observed time points, joined by straight segments; no smoothing or interpolation of additional values.",
   "individuals": [
     {
@@ -10,27 +45,24 @@
       "level": "Low",
       "sample_id": "ID113",
       "sample_index_zero_based": 112,
-      "observed_level_quantile": 0.1,
-      "target_observed_mean": 16.697707513,
-      "selected_observed_mean": 16.706701775
+      "selected_observed_mean": 16.706701775,
+      "observed_mean_percentile_rank": 12.0
     },
     {
       "panel": "B",
-      "level": "Median",
-      "sample_id": "ID23",
-      "sample_index_zero_based": 22,
-      "observed_level_quantile": 0.5,
-      "target_observed_mean": 17.84438245925,
-      "selected_observed_mean": 17.8463774885
+      "level": "Middle",
+      "sample_id": "ID477",
+      "sample_index_zero_based": 476,
+      "selected_observed_mean": 17.9614131985,
+      "observed_mean_percentile_rank": 57.99999999999999
     },
     {
       "panel": "C",
       "level": "High",
-      "sample_id": "ID359",
-      "sample_index_zero_based": 358,
-      "observed_level_quantile": 0.9,
-      "target_observed_mean": 19.167530869,
-      "selected_observed_mean": 19.130685545
+      "sample_id": "ID24",
+      "sample_index_zero_based": 23,
+      "selected_observed_mean": 19.109997944999996,
+      "observed_mean_percentile_rank": 88.0
     }
   ],
   "sources": [

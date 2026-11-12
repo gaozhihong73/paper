@@ -1,0 +1,22 @@
+{
+  "reference_code": "https://github.com/gaozhihong73/Code/blob/main/experiments/analysis/build_supplementary_tables.py",
+  "reference_blob_sha": "10a6660e2d37412d584629434846dc63f1855cb3",
+  "ccc": "Per-individual Lin CCC using population moments across the 20 saved observation times; reference is the latent noise-free curve.",
+  "growth_time": "PCHIP interpolation to 1000 equally spaced time coordinates. Maximum first derivative within the interior 90% of the full time range. Invalid if amplitude < 1% of training-observation P95-P5, maximum lies on the interior boundary, or maximum derivative is nonpositive.",
+  "aggregation": "First mean individual CCC and mean absolute valid growth-time error within each repeat; then equal-weight means over 10 independent repeats. Timing MAE includes only valid predicted/latent time pairs.",
+  "uncertainty": "Percentile 95% confidence interval from 10000 repeat-level bootstrap resamples; seed 73. Pale dots are repeat-level summaries.",
+  "n_runs": 600,
+  "n_individual_curves": 46440,
+  "invalid_time_pairs": 0,
+  "axis_limits": {
+    "mean_ccc": [
+      0.9869728424230615,
+      1.0008501653517978
+    ],
+    "growth_time_mae": [
+      0.0,
+      1.0072345679012347
+    ]
+  },
+  "figure": "07_\u8bba\u6587\u56fe\u8868\\5-5_\u6f5c\u5728\u8f68\u8ff9\u4e00\u81f4\u6027\u4e0e\u4e3b\u8981\u589e\u957f\u65f6\u95f4\u6062\u590d\u8bef\u5dee.png"
+}

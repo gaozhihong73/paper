@@ -15,6 +15,7 @@
     12.5
   ],
   "color": "Darker blue denotes a better (smaller) rank.",
+  "cell_labels": "Colors only; numeric ranks are retained in the CSV data.",
   "model_order": [
     "Mean",
     "Ridge-All",
