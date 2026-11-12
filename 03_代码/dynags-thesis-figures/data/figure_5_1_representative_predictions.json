@@ -72,5 +72,15 @@
     "05_实验结果\\5.2\\experiments\\P10000_NTR400_H0.8\\rep_01\\truth\\true_curve.csv",
     "05_实验结果\\5.2\\experiments\\P10000_NTR400_H0.8\\rep_01\\sample_ids.csv",
     "05_实验结果\\5.2\\experiments\\P10000_NTR400_H0.8\\rep_01\\simulation_config.json"
+  ],
+  "axis_labels": [
+    {
+      "artist": "_supxlabel",
+      "text": "Time"
+    },
+    {
+      "artist": "_supylabel",
+      "text": "Phenotypic value"
+    }
   ]
 }

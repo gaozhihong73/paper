@@ -14,6 +14,7 @@ import pandas as pd
 from matplotlib.lines import Line2D
 
 from dynags_figures.style import thesis_style
+from dynags_figures.labels import AXIS_LABELS
 
 ROOT = Path(__file__).resolve().parents[3]
 PROJECT = Path(__file__).resolve().parents[1]
@@ -120,8 +121,8 @@ def draw(data: pd.DataFrame) -> None:
             ax.grid(axis="y", color="#DFE7EB", lw=.5)
             ax.spines[["left", "bottom"]].set_color("#A7B8C0")
             ax.tick_params(length=2.5, pad=2, labelsize=7)
-        fig.supylabel("Phenotype value (simulation scale)", x=.018, fontsize=8)
-        fig.supxlabel("Time point", y=.19, fontsize=8)
+        fig.supylabel(AXIS_LABELS["phenotypic_value"], x=.018, fontsize=8)
+        fig.supxlabel(AXIS_LABELS["time"], y=.19, fontsize=8)
         handles = [Line2D([], [], color=colors["truth"], lw=1.5, label="Latent truth"),
                    Line2D([], [], marker="o", ls="none", markerfacecolor="white",
                           markeredgecolor="#70818C", markersize=3.4, label="Observed"),
