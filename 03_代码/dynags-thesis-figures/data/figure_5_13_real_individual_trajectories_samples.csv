@@ -1,0 +1,10 @@
+﻿panel,trait,stratum,repeat,fold,sample_idx,sample_id,observed_mean,observed_mean_from_exported_times,outer_test_split
+A,RGBVI,low,1,3,254,254,0.15626737475395203,0.15626737785714287,shared/repeat_01/fold_03/split.npz
+B,RGBVI,middle,1,1,269,269,0.1680167019367218,0.1680167114285714,shared/repeat_01/fold_01/split.npz
+C,RGBVI,high,1,3,294,294,0.17781230807304382,0.1778123055,shared/repeat_01/fold_03/split.npz
+D,CIVE,low,1,3,54,54,8.153940200805664,8.153940111428572,shared/repeat_01/fold_03/split.npz
+E,CIVE,middle,1,2,183,183,8.952141761779785,8.952141764285713,shared/repeat_01/fold_02/split.npz
+F,CIVE,high,1,2,2,2,10.064949035644531,10.064948785714284,shared/repeat_01/fold_02/split.npz
+G,IPCA,low,1,5,253,253,73.4555892944336,73.45559607142856,shared/repeat_01/fold_05/split.npz
+H,IPCA,middle,1,5,342,342,76.21593475341797,76.2159367857143,shared/repeat_01/fold_05/split.npz
+I,IPCA,high,1,3,157,157,80.03009796142578,80.03010157142856,shared/repeat_01/fold_03/split.npz

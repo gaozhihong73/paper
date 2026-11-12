@@ -20,6 +20,7 @@ PROJECT = Path(__file__).resolve().parents[1]
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(PROJECT / "src"))
 from dynags_figures.style import thesis_style
+from dynags_figures.labels import AXIS_LABELS
 
 SOURCE = ROOT / "05_实验结果/5.5/outputs/tfpp/maize"
 DATA = PROJECT / "data"
@@ -158,7 +159,7 @@ def draw(samples: pd.DataFrame, data: pd.DataFrame, protocol: dict) -> dict:
                               label=model) for model in MODELS)
         fig.legend(handles=handles, loc="upper center", bbox_to_anchor=(.54, .997),
                    ncol=3, fontsize=7.6, handlelength=2.5, handletextpad=.6, columnspacing=1.8)
-        fig.text(.54, .068, "Time", ha="center", va="center", fontsize=8.3)
+        fig.text(.54, .068, AXIS_LABELS["time"], ha="center", va="center", fontsize=8.3)
 
         fig.canvas.draw()
         renderer = fig.canvas.get_renderer()

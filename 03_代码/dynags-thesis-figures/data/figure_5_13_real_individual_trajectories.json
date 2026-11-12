@@ -85,5 +85,23 @@
   "dpi": 600,
   "figure": "07_论文图表\\5-13_真实玉米代表个体的表型预测轨迹.png",
   "caption": "图 5-13 真实玉米代表个体的表型预测轨迹",
-  "caption_note": "每行依次为 RGBVI、CIVE 和 IPCA，每列依次为已提供代表样本清单中的低、中、高观测水平个体。灰色曲线为观测值，蓝色和紫色曲线分别为 DynaGS 与 Cropformer 的折外预测。各面板保留实际观测时间和性状原始尺度，同一性状采用相同纵轴范围。面板中的 Sample 编号沿用结果文件中的样本编号。"
+  "caption_note": "每行依次为 RGBVI、CIVE 和 IPCA，每列依次为已提供代表样本清单中的低、中、高观测水平个体。灰色曲线为观测值，蓝色和紫色曲线分别为 DynaGS 与 Cropformer 的折外预测。各面板保留实际观测时间和性状原始尺度，同一性状采用相同纵轴范围。面板中的 Sample 编号沿用结果文件中的样本编号。",
+  "axis_labels": [
+    {
+      "artist": "axes[0].y",
+      "text": "RGBVI"
+    },
+    {
+      "artist": "axes[3].y",
+      "text": "CIVE"
+    },
+    {
+      "artist": "axes[6].y",
+      "text": "IPCA"
+    },
+    {
+      "artist": "figure.texts[3]",
+      "text": "Time"
+    }
+  ]
 }
