@@ -16,6 +16,7 @@ from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 
 from dynags_figures.style import thesis_style
+from dynags_figures.labels import AXIS_LABELS
 
 ROOT = Path(__file__).resolve().parents[3]
 PROJECT = Path(__file__).resolve().parents[1]
@@ -121,8 +122,8 @@ def draw(rows: list[dict]) -> None:
             ax.spines["left"].set_color("#A7B8C0")
             ax.spines["bottom"].set_color("#A7B8C0")
 
-        fig.supylabel("Value (simulation scale)", x=0.017, fontsize=8)
-        fig.supxlabel("Time point", y=0.082, fontsize=8)
+        fig.supylabel(AXIS_LABELS["phenotypic_value"], x=0.017, fontsize=8)
+        fig.supxlabel(AXIS_LABELS["time"], y=0.082, fontsize=8)
         fig.legend(
             handles=[
                 Line2D([], [], color="#3D5563", lw=1.7,

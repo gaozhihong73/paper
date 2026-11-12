@@ -23,6 +23,12 @@
 3-8_最终代表性状的个体纵向轨迹.png
 ```
 
+## 坐标轴命名
+
+坐标轴和色标的名称以 `src/dynags_figures/labels.py` 中的 `AXIS_LABELS` 为准。同一变量跨图使用相同名称：时间为 `Time`，表型值为 `Phenotypic value`，训练样本量为 `Training sample size`，预测误差为 `Prediction error`，预测指标为 `PCC`、时间校正的 `R²` 和 `RMSE`。原始数值尺度、误差方向与统计区间在图注中说明。
+
+单独性状名称、标准化轨迹的 Z 分数、轨迹间相关系数和真实/模拟遗传力符号按各自定义保留，不按字面相近强制替换。新增或修改图件后先运行 `uv run python scripts/check_axis_labels.py` 检查命名，再检查最终图片的布局。
+
 ## 环境初始化
 
 ```powershell

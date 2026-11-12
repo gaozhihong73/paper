@@ -82,5 +82,10 @@
       "artist": "_supylabel",
       "text": "Phenotypic value"
     }
-  ]
+  ],
+  "ylabel_alignment": {
+    "reference": "vertical center of the data plotting area",
+    "y_figure_fraction": 0.61,
+    "center_error_at_canvas_dpi_pixels": 2.842170943040401e-14
+  }
 }

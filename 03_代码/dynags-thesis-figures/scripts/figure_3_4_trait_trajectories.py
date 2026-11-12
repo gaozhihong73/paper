@@ -16,6 +16,7 @@ from matplotlib.patches import Patch
 from matplotlib.ticker import MaxNLocator
 
 from dynags_figures.style import thesis_style
+from dynags_figures.labels import AXIS_LABELS
 
 ROOT = Path(__file__).resolve().parents[3]
 PROJECT = Path(__file__).resolve().parents[1]
@@ -104,8 +105,8 @@ def draw(rows: list[dict[str, str | int | float]]) -> None:
         ]
         fig.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, 0.984),
                    ncol=2, fontsize=7.5, frameon=False)
-        fig.supxlabel("Time coordinate", y=0.015, fontsize=8)
-        fig.supylabel("Trait value (input scale)", x=0.012, fontsize=8)
+        fig.supxlabel(AXIS_LABELS["time"], y=0.015, fontsize=8)
+        fig.supylabel(AXIS_LABELS["phenotypic_value"], x=0.012, fontsize=8)
         fig.subplots_adjust(left=0.11, right=0.985, top=0.94, bottom=0.065,
                             wspace=0.48, hspace=0.72)
         FIGURE.parent.mkdir(parents=True, exist_ok=True)
