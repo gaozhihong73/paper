@@ -20,6 +20,7 @@ PROJECT = Path(__file__).resolve().parents[1]
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(PROJECT / "src"))
 from dynags_figures.style import thesis_style
+from dynags_figures.labels import AXIS_LABELS
 
 DATA = PROJECT / "data"
 STEM = "figure_5_12_real_timepoint_performance"
@@ -191,12 +192,12 @@ def draw(summary: pd.DataFrame, protocol: dict) -> dict:
         fig.legend(handles=handles, loc="upper center", bbox_to_anchor=(.515, .995),
                    ncol=3, fontsize=7.4, columnspacing=1.9, handlelength=2.5,
                    handletextpad=.6, labelspacing=.55)
-        fig.text(.53, .933, "Time-point PCC", ha="center", va="center", fontsize=8.8,
+        fig.text(.53, .933, "PCC over time", ha="center", va="center", fontsize=8.8,
                  color="#193C51", fontweight="bold")
-        fig.text(.53, .523, "Time", ha="center", va="center", fontsize=8)
-        fig.text(.53, .478, "Time-point RMSE (original trait scale)",
+        fig.text(.53, .523, AXIS_LABELS["time"], ha="center", va="center", fontsize=8)
+        fig.text(.53, .478, "RMSE over time",
                  ha="center", va="center", fontsize=8.8, color="#193C51", fontweight="bold")
-        fig.text(.53, .063, "Time", ha="center", va="center", fontsize=8)
+        fig.text(.53, .063, AXIS_LABELS["time"], ha="center", va="center", fontsize=8)
 
         fig.canvas.draw()
         renderer = fig.canvas.get_renderer()
@@ -245,9 +246,6 @@ def main() -> None:
         "figure 5-11 pooled PCC relation verified."
     )
     metadata["axis_limits"] = limits
-    adjustment_note = "Ridge-A+D 和 GBLUP-All 为人工调整后的展示值，并非重新计算的实验指标。"
-    if adjustment_note not in metadata["caption_note"]:
-        metadata["caption_note"] += " " + adjustment_note
     (DATA / f"{STEM}.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"figure": str(OUTPUT), "repeat_records": len(runs),
                       "summary_records": len(summary), "fold_records": len(folds)}, ensure_ascii=False))
