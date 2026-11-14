@@ -15,6 +15,7 @@ from matplotlib.lines import Line2D
 from scipy.interpolate import PchipInterpolator
 
 from dynags_figures.style import thesis_style
+from dynags_figures.labels import AXIS_LABELS
 
 ROOT = Path(__file__).resolve().parents[3]
 PROJECT = Path(__file__).resolve().parents[1]
@@ -183,7 +184,7 @@ def draw(runs: pd.DataFrame, summary: pd.DataFrame) -> dict:
                 if j == 0:
                     ax.set_ylabel("Curve CCC" if i == 0 else "Growth-time MAE (time units)",
                                   fontsize=8, labelpad=6)
-        fig.supxlabel("Training individuals", y=.165, fontsize=8)
+        fig.supxlabel(AXIS_LABELS["training_sample_size"], y=.165, fontsize=8)
         fig.legend(handles=[Line2D([], [], color=COLORS[h], lw=1.6, label=rf"$h^2={h}$") for h in H],
                    loc="lower center", bbox_to_anchor=(.5, .087), ncol=3, fontsize=7.5,
                    columnspacing=2.8, handlelength=2.1)

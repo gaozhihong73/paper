@@ -8,6 +8,36 @@
     "r2_time": "1 - total SSE / sum of squared deviations from each test time mean.",
     "rmse": "Arithmetic mean of original-scale time-point RMSE values."
   },
-  "x_axis": "Training individuals, logarithmic scale base 2.",
-  "figure": "07_\u8bba\u6587\u56fe\u8868\\5-2_\u4e0d\u540c\u6a21\u62df\u6761\u4ef6\u4e0b\u7684\u7eb5\u5411\u8868\u578b\u9884\u6d4b\u6027\u80fd.png"
+  "x_axis": "Training sample size, logarithmic scale base 2.",
+  "figure": "07_论文图表\\5-2_不同模拟条件下的纵向表型预测性能.png",
+  "axis_labels": [
+    {
+      "artist": "axes[0].y",
+      "text": "PCC"
+    },
+    {
+      "artist": "axes[1].y",
+      "text": "$R^2_{\\mathrm{time}}$"
+    },
+    {
+      "artist": "axes[2].y",
+      "text": "RMSE"
+    },
+    {
+      "artist": "axes[3].y",
+      "text": "PCC"
+    },
+    {
+      "artist": "axes[4].y",
+      "text": "$R^2_{\\mathrm{time}}$"
+    },
+    {
+      "artist": "axes[5].y",
+      "text": "RMSE"
+    },
+    {
+      "artist": "_supxlabel",
+      "text": "Training sample size"
+    }
+  ]
 }

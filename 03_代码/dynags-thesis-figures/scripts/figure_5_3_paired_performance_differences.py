@@ -14,6 +14,7 @@ import pandas as pd
 from matplotlib.colors import LinearSegmentedColormap
 
 from dynags_figures.style import thesis_style
+from dynags_figures.labels import AXIS_LABELS
 
 ROOT = Path(__file__).resolve().parents[3]
 PROJECT = Path(__file__).resolve().parents[1]
@@ -82,7 +83,7 @@ def draw(summary: pd.DataFrame) -> dict:
                 ax.set_xticks(range(5), labels=[str(n) for n in TRAIN])
                 ax.set_yticks(range(3), labels=[str(h) for h in H])
                 if col == 0:
-                    ax.set_ylabel(r"Heritability ($h^2$)", labelpad=5)
+                    ax.set_ylabel(AXIS_LABELS["simulation_heritability"], labelpad=5)
                 ax.set_title(f"{'ABCDEF'[row*2+col]}  {size:,} SNPs", loc="left",
                              fontsize=8, color="#193C51", pad=6)
                 ax.tick_params(length=0, pad=4, labelsize=7)
@@ -98,7 +99,7 @@ def draw(summary: pd.DataFrame) -> dict:
             colorbar.ax.tick_params(labelsize=6.8, length=2, pad=2)
             colorbar.outline.set_linewidth(.45)
             colorbar.outline.set_edgecolor("#A7B8C0")
-        fig.supxlabel("Training individuals", y=.087, fontsize=8)
+        fig.supxlabel(AXIS_LABELS["training_sample_size"], y=.087, fontsize=8)
         fig.text(.5, .033, "Positive values indicate a screening benefit", ha="center",
                  va="center", fontsize=7.5, color="#455560")
         fig.savefig(OUTPUT, dpi=600, facecolor="white")

@@ -84,8 +84,14 @@
     }
   ],
   "ylabel_alignment": {
-    "reference": "vertical center of the data plotting area",
-    "y_figure_fraction": 0.61,
-    "center_error_at_canvas_dpi_pixels": 2.842170943040401e-14
+    "reference": "vertical center of data panels; 6 pt from widest visible left tick text",
+    "key": "5_1",
+    "figure": "07_论文图表\\5-1_模拟测试个体的纵向表型预测轨迹.png",
+    "gap_pt": 5.999999999999999,
+    "center_error_pt": 0.0,
+    "left_outer_padding_pt": 7.999999999999999,
+    "left_subplot_fraction": 0.0763840663580247,
+    "ylabel_y_fraction": 0.6099999999999999,
+    "data_signature_unchanged": true
   }
 }

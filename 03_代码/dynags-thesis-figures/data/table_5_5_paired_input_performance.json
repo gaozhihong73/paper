@@ -1,0 +1,17 @@
+{
+  "source": "figure_5_2_simulation_performance_runs.csv",
+  "condition": {
+    "snps": 10000,
+    "n_train": 400,
+    "heritability": 0.8
+  },
+  "n_repeats": 10,
+  "sd": "Sample SD across independent repeats (ddof=1).",
+  "difference": {
+    "pcc": "Screened minus Oracle",
+    "r2_time": "Screened minus Oracle",
+    "rmse": "Oracle minus Screened"
+  },
+  "ci": "Percentile 95% confidence interval of mean paired differences; 10000 paired bootstrap resamples, random seed 73.",
+  "rounding": "Compute with full precision and round only displayed values to 3 decimals."
+}

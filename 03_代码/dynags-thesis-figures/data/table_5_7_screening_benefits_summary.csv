@@ -1,0 +1,22 @@
+﻿model,source_model,metric,source_metric,mean_difference,ci95_lower,ci95_upper,n_repeats
+Ridge-All,Ridge,pcc,pcc,0.16,0.132,0.189,10
+Ridge-All,Ridge,r2_time,r2,0.093,0.07,0.117,10
+Ridge-All,Ridge,rmse,rmse,0.059,0.042,0.076,10
+RR-GBLUP,RR-GBLUP,pcc,pcc,0.136,0.114,0.158,10
+RR-GBLUP,RR-GBLUP,r2_time,r2,0.07,0.056,0.083,10
+RR-GBLUP,RR-GBLUP,rmse,rmse,0.043,0.034,0.051,10
+Random Forest,Random Forest,pcc,pcc,0.07,0.057,0.082,10
+Random Forest,Random Forest,r2_time,r2,0.032,0.02,0.045,10
+Random Forest,Random Forest,rmse,rmse,0.021,0.013,0.029,10
+XGBoost,XGBoost,pcc,pcc,0.047,0.041,0.053,10
+XGBoost,XGBoost,r2_time,r2,0.031,0.02,0.042,10
+XGBoost,XGBoost,rmse,rmse,0.02,0.013,0.027,10
+DNNGP-SNP,DNNGP-SNP,pcc,pcc,0.199,0.17,0.228,10
+DNNGP-SNP,DNNGP-SNP,r2_time,r2,0.129,0.108,0.151,10
+DNNGP-SNP,DNNGP-SNP,rmse,rmse,0.083,0.068,0.098,10
+Cropformer,Cropformer,pcc,pcc,0.321,0.28,0.362,10
+Cropformer,Cropformer,r2_time,r2,0.196,0.17,0.221,10
+Cropformer,Cropformer,rmse,rmse,0.123,0.102,0.143,10
+DynaGS,DynaGS,pcc,pcc,0.216,0.187,0.245,10
+DynaGS,DynaGS,r2_time,r2,0.118,0.096,0.14,10
+DynaGS,DynaGS,rmse,rmse,0.104,0.089,0.119,10

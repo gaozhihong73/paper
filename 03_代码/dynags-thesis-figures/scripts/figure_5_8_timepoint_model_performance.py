@@ -15,6 +15,7 @@ from matplotlib.lines import Line2D
 from matplotlib.ticker import MultipleLocator, StrMethodFormatter
 
 from dynags_figures.style import thesis_style
+from dynags_figures.labels import AXIS_LABELS
 
 ROOT = Path(__file__).resolve().parents[3]
 PROJECT = Path(__file__).resolve().parents[1]
@@ -103,11 +104,11 @@ def draw(summary: pd.DataFrame) -> dict:
             ax.tick_params(length=2.5, pad=2, labelsize=7)
             ax.grid(axis="y", color="#DFE7EB", linewidth=.5)
             ax.spines[["left", "bottom"]].set_color("#A7B8C0")
-            ax.set_ylabel("PCC" if metric == "pcc" else "RMSE (simulation scale)",
+            ax.set_ylabel(AXIS_LABELS[metric],
                           fontsize=8, labelpad=5)
-            ax.set_title("A  Time-point PCC" if metric == "pcc" else "B  Time-point RMSE",
+            ax.set_title("A  PCC over time" if metric == "pcc" else "B  RMSE over time",
                          loc="left", fontsize=8.2, color="#193C51", pad=7)
-        fig.supxlabel("Time point", y=.175, fontsize=8)
+        fig.supxlabel(AXIS_LABELS["time"], y=.175, fontsize=8)
         handles = [Line2D([], [], **STYLES[model], lw=1.65 if model == "DynaGS" else 1.15,
                           markerfacecolor="white", markeredgewidth=.75, markersize=3.2,
                           label=model) for model in MODELS]

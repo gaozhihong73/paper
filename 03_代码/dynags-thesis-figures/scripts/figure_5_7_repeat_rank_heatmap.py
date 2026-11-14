@@ -15,6 +15,7 @@ from matplotlib.colors import BoundaryNorm
 from matplotlib.patches import Patch, Rectangle
 
 from dynags_figures.style import thesis_style
+from dynags_figures.labels import AXIS_LABELS
 from figure_5_6_paired_model_comparison import MODELS, collect
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -87,7 +88,7 @@ def draw(data: pd.DataFrame) -> None:
         colorbar.ax.tick_params(length=2, labelsize=7, pad=2)
         colorbar.outline.set_linewidth(.5)
         colorbar.outline.set_edgecolor("#A7B8C0")
-        fig.supxlabel("Independent repeat", y=.112, fontsize=8)
+        fig.supxlabel(AXIS_LABELS["repeat"], y=.112, fontsize=8)
         fig.legend(handles=[Patch(facecolor="#EDF0F2", edgecolor="#AFBDC6", hatch="///",
                                   linewidth=.4, label="Undefined PCC")],
                    loc="lower center", bbox_to_anchor=(.5, .023), fontsize=7.3,

@@ -15,6 +15,7 @@ from matplotlib.lines import Line2D
 
 from dynags_figures.style import thesis_style
 from dynags_figures.labels import AXIS_LABELS
+from dynags_figures.layout import place_shared_ylabel
 
 ROOT = Path(__file__).resolve().parents[3]
 PROJECT = Path(__file__).resolve().parents[1]
@@ -132,15 +133,7 @@ def draw(data: pd.DataFrame) -> None:
         fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(.5, .035),
                    ncol=4, fontsize=7.4, handlelength=2.6, columnspacing=1.9)
         fig.subplots_adjust(left=.105, right=.985, bottom=.34, top=.88, wspace=.16)
-        plotting_area = axes[0].get_position()
-        ylabel = fig.supylabel(AXIS_LABELS["phenotypic_value"], x=.018,
-                              y=(plotting_area.y0 + plotting_area.y1) / 2,
-                              va="center", fontsize=8)
-        fig.canvas.draw()
-        label_box = ylabel.get_window_extent(fig.canvas.get_renderer())
-        axis_center = (axes[0].bbox.y0 + axes[0].bbox.y1) / 2
-        if abs((label_box.y0 + label_box.y1) / 2 - axis_center) > .5:
-            raise ValueError("Phenotypic value label is not centered on the plotting area")
+        place_shared_ylabel(fig, axes, AXIS_LABELS["phenotypic_value"])
         OUTPUT.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(OUTPUT, dpi=600, facecolor="white")
         plt.close(fig)

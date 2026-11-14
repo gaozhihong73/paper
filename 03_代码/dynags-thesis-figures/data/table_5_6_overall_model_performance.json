@@ -1,0 +1,18 @@
+{
+  "source": "Supplied 5.3 metrics.json overall fields, read directly via figure_5_6_paired_model_comparison.collect.",
+  "condition": {
+    "snps": 10000,
+    "n_train": 400,
+    "heritability": 0.8
+  },
+  "aggregation": "Equal-weight mean and sample SD (ddof=1) over 10 independent repeats.",
+  "missing": "Mean baseline PCC is undefined and displayed as N/A.",
+  "display_precision": 3,
+  "comparisons": {
+    "baseline": "XGBoost",
+    "pcc_difference": 0.2422593445334047,
+    "r2_difference": 0.3387078407941254,
+    "rmse_reduction": 0.23980739450520883,
+    "relative_rmse_reduction_percent": 22.996326624533825
+  }
+}

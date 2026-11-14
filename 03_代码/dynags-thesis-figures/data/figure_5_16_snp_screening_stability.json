@@ -1,0 +1,108 @@
+{
+  "source_root": "05_实验结果\\5.5\\outputs\\tfpp\\maize",
+  "source_files_sha256": {
+    "protocol.json": "f53af9359e449e14554c2bf72a899fe72e477bef164b21431c36d1a0d7dc2936",
+    "analysis/snp_jaccard.csv": "e7e270cb1086b6ef554ad978e58213b00689c06883a34746feec044e36b72d3e",
+    "analysis/snp_frequency.csv": "5f4a5a9633fccbbf91f691546bdb9cfd3a29ad308ee8bf20ecc81297172ff64b",
+    "analysis/screening_counts.csv": "6dfc02c9e7a85c471b9d88da147b0ce924b3e945165d605219ee66162f6d95ff",
+    "shared/repeat_01/fold_01/selected.npy": "417b18fb3653828375e70d696bd54f4f2a766858416881530ac8bec310e2fc97",
+    "shared/repeat_01/fold_02/selected.npy": "ad58d39c61a9c9e643c37ea85fee4fee8ac0811f4956aa2bf084e491f2dffdd2",
+    "shared/repeat_01/fold_03/selected.npy": "34e7dbfe8f644c7cdcc9fcca45687ddc398f83a3cc9b20b6c3206157dfc85dea",
+    "shared/repeat_01/fold_04/selected.npy": "9af41530019329aacb1bb4b80e90946f2074cb6896e762fd730941876b8261f4",
+    "shared/repeat_01/fold_05/selected.npy": "fe35b21d81ebee7c4d080164215f3a509c8c4bebddf362394292f735ac317b52",
+    "shared/repeat_02/fold_01/selected.npy": "329ad2100ea9f6f1f9f27e380f7f009468260b0186cbbb87d1a948623955f0ab",
+    "shared/repeat_02/fold_02/selected.npy": "8e0d4c8c6e6f1a71c94b573dba222ec4b66b8acd9aba16ac8abf43dd90729ee4",
+    "shared/repeat_02/fold_03/selected.npy": "187f09e4d25cb709e43bdb37a35adaa3d22941923a9f1a004a5f65735c8d5519",
+    "shared/repeat_02/fold_04/selected.npy": "74df538dfc6992ebe28e600a7955a77b0205a68661616016ce5a7322c29f3198",
+    "shared/repeat_02/fold_05/selected.npy": "8bd259e1d24c18b919d79dee33817ea86cb095728e5f11114abdcd5f05371b4e",
+    "shared/repeat_03/fold_01/selected.npy": "65ed13ef90159399212cf98d864f2d278d025a32823cfd1e6799b2fa6ab7823a",
+    "shared/repeat_03/fold_02/selected.npy": "e253731e9884ea67ea8f733f2f13f901131343ed69695c09d0f7411128c9994d",
+    "shared/repeat_03/fold_03/selected.npy": "56f47cdd77a80e2f74191160130f6ab55d077d395b0401d24ac53eeeb29904c2",
+    "shared/repeat_03/fold_04/selected.npy": "7758337cabf19728a01e096e13f5886f60030f336522d27a9b09830e1aab6aee",
+    "shared/repeat_03/fold_05/selected.npy": "2e45ac458b550ac86186d22dc28aba36292a4ef27ecc75c18d981a28d82afde2",
+    "shared/repeat_04/fold_01/selected.npy": "28ddc9578219533ab3c10d5d5a95f26d6ed831282dcbec13162012a4b5b9046a",
+    "shared/repeat_04/fold_02/selected.npy": "0d874071a051ff55c499216259059191b2b23b1619e8272443250998e10b59a4",
+    "shared/repeat_04/fold_03/selected.npy": "faa016f577c8d57da124da3c2611c79fb89593f5e4a0bd3170c09ec0c7091c0a",
+    "shared/repeat_04/fold_04/selected.npy": "f0bf64c39f63e8a500f673f9dc086f1f7a68179392cac5479e79a193ba6e5a06",
+    "shared/repeat_04/fold_05/selected.npy": "0bb1bf632bd291c2400c0fa9d7817302f5da2ecbc507b51f88140e29843c3caf",
+    "shared/repeat_05/fold_01/selected.npy": "92fb2a9311e80fb2c13076994d3adbe1cdc1ea2abccf5e3ea73b315d64f0bc31",
+    "shared/repeat_05/fold_02/selected.npy": "b26fdf77fa264af984ef7e5075aebc72211c091fd109b622220dd0fdfd62bee9",
+    "shared/repeat_05/fold_03/selected.npy": "22911957c37442688d5865226ee64297f36a1cca45e1710b55e1aa11bb742d70",
+    "shared/repeat_05/fold_04/selected.npy": "0b1934f5034451e87e49a266e03f4412db440aeb3e642f676060863f87417771",
+    "shared/repeat_05/fold_05/selected.npy": "5adb15bb71526a47ee9655595ed545835978e55474cf3cf3a5adfc6f523dc115"
+  },
+  "checks": "All 25 supplied selected.npy sets recomputed and matched against the supplied Jaccard, frequency and screening-count tables.",
+  "fold_order": [
+    "r1_f1",
+    "r1_f2",
+    "r1_f3",
+    "r1_f4",
+    "r1_f5",
+    "r2_f1",
+    "r2_f2",
+    "r2_f3",
+    "r2_f4",
+    "r2_f5",
+    "r3_f1",
+    "r3_f2",
+    "r3_f3",
+    "r3_f4",
+    "r3_f5",
+    "r4_f1",
+    "r4_f2",
+    "r4_f3",
+    "r4_f4",
+    "r4_f5",
+    "r5_f1",
+    "r5_f2",
+    "r5_f3",
+    "r5_f4",
+    "r5_f5"
+  ],
+  "candidate_snps": 50000,
+  "snps_per_fold": 5000,
+  "n_folds": 25,
+  "n_pairs": 300,
+  "jaccard": "Intersection size divided by union size for each pair of selected SNP sets.",
+  "pair_summary": {
+    "Between repeats": {
+      "count": 250,
+      "mean": 0.3266569824924013,
+      "median": 0.32916861090811855,
+      "min": 0.2564392511622063,
+      "max": 0.3802622498274672
+    },
+    "Within repeat": {
+      "count": 50,
+      "mean": 0.29916095999323034,
+      "median": 0.2952529470213108,
+      "min": 0.26119308866187413,
+      "max": 0.3451708366962604
+    }
+  },
+  "selected_union_snps": 17553,
+  "never_selected_snps": 32447,
+  "selected_in_all_25": 121,
+  "panel_A": "Repeat-major fold order; self-comparisons masked in light grey; no numeric cell annotations.",
+  "panel_B": "All 300 unordered non-self fold pairs, separated into 50 within-repeat and 250 between-repeat pairs; box shows quartiles and median, whiskers use 1.5 IQR; all points displayed.",
+  "panel_C": "SNP counts by the number of selecting folds, among SNPs appearing at least once; zero-count candidates retained in the saved distribution CSV.",
+  "jitter": "Horizontal category jitter in panel B, seed 73; similarity values are unchanged.",
+  "axis_limits": {
+    "jaccard_color_limits": [
+      0.25,
+      0.4
+    ],
+    "pairwise_y_limits": [
+      0.24,
+      0.4
+    ]
+  },
+  "figure_size_inches": [
+    6.3,
+    4.3
+  ],
+  "dpi": 600,
+  "figure": "07_论文图表\\5-16_真实玉米数据中SNP筛选结果的稳定性.png",
+  "caption": "图 5-16 真实玉米数据中 SNP 筛选结果的稳定性",
+  "caption_note": "A：5 次重复、每次 5 个外层训练折的 SNP 集合 Jaccard 相似性，R 和 F 分别表示重复与折编号；浅灰色对角线为自身比较，白色分隔线区分重复。B：同一重复内 50 对训练折与不同重复间 250 对训练折的相似性分布；箱体为四分位区间，中线为中位数，须线延伸至 1.5 倍四分位距内的实际观测值，散点为各折对。C：至少一次入选的 17,553 个 SNP 在 25 个训练折中的入选次数分布，其中 121 个 SNP 在全部 25 个折中入选。各折最终位点数均为 5,000。"
+}

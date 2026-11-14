@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from dynags_figures.style import thesis_style
+from dynags_figures.labels import AXIS_LABELS
 
 ROOT = Path(__file__).resolve().parents[3]
 PROJECT = Path(__file__).resolve().parents[1]
@@ -127,7 +128,7 @@ def draw(stages: list[dict[str, str | int]]) -> Path:
         ax.set_xticks([1e7, 1e8], labels=["10 million", "100 million"])
         ax.minorticks_off()
         ax.set_yticks(positions, labels=labels)
-        ax.set_xlabel("Retained variants (log scale)", labelpad=9)
+        ax.set_xlabel(AXIS_LABELS["retained_variants"], labelpad=9)
         ax.tick_params(axis="x", labelsize=7.7, length=3)
         ax.tick_params(axis="y", labelsize=7.7, length=0, pad=8)
         ax.grid(axis="x", color="#DAE5EB", linewidth=0.6)

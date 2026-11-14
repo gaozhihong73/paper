@@ -18,6 +18,7 @@ from matplotlib.ticker import MaxNLocator
 
 from dynags_figures.style import thesis_style
 from dynags_figures.labels import AXIS_LABELS
+from dynags_figures.layout import place_shared_ylabel
 
 ROOT = Path(__file__).resolve().parents[3]
 PROJECT = Path(__file__).resolve().parents[1]
@@ -136,9 +137,9 @@ def draw(
         fig.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, 0.985),
                    ncol=2, frameon=False, fontsize=7.5)
         fig.supxlabel(AXIS_LABELS["time"], y=0.015, fontsize=8)
-        fig.supylabel(AXIS_LABELS["phenotypic_value"], x=0.012, fontsize=8)
         fig.subplots_adjust(left=0.12, right=0.985, top=0.925, bottom=0.075,
                             wspace=0.31, hspace=0.42)
+        place_shared_ylabel(fig, axes, AXIS_LABELS["phenotypic_value"])
         FIGURE.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(FIGURE, dpi=300, facecolor="white", bbox_inches="tight", pad_inches=0.13)
         plt.close(fig)

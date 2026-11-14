@@ -14,6 +14,7 @@ import pandas as pd
 from figure_3_4_trait_trajectories import TIMES, TRAITS
 
 from dynags_figures.style import thesis_style
+from dynags_figures.labels import AXIS_LABELS
 
 ROOT = Path(__file__).resolve().parents[3]
 PROJECT = Path(__file__).resolve().parents[1]
@@ -75,7 +76,7 @@ def draw(matrix: np.ndarray) -> None:
         )
         ax.set_xticks(np.arange(len(TIMES)), labels=[str(t) for t in TIMES])
         ax.set_yticks(np.arange(len(TRAITS)), labels=TRAITS)
-        ax.set_xlabel("Time coordinate", labelpad=10)
+        ax.set_xlabel(AXIS_LABELS["time"], labelpad=10)
         ax.tick_params(axis="x", length=0, pad=6, labelsize=7.1)
         ax.tick_params(axis="y", length=0, pad=6, labelsize=7.5)
         ax.set_xticks(np.arange(-0.5, len(TIMES), 1), minor=True)

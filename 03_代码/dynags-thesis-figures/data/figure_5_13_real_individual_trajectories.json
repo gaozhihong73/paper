@@ -1,23 +1,37 @@
 {
   "source_root": "05_实验结果\\5.5\\outputs\\tfpp\\maize",
   "source_files_sha256": {
-    "analysis/representative_samples.csv": "90daf6ee21081678747cb3c4a23b37c1b3cdabc28b24c04ede81a573786dde4c",
-    "analysis/representative_trajectories.csv": "45b0f520a9369246156c593d50528bf45e27a8a42a75a5dd9c182acc9a2d3053",
     "protocol.json": "f53af9359e449e14554c2bf72a899fe72e477bef164b21431c36d1a0d7dc2936",
     "sample_ids.csv": "4a14d21b4f2564e76e49323e172fb997a1c8dbd6c56fba9d85369a6a09b5a288",
+    "main/repeat_01/fold_01/DynaGS/predictions.npz": "1bab1c4b828ed248be2d5c1c5eb87cd1cc020fbefe720af9afb7f8815dc27710",
     "shared/repeat_01/fold_01/split.npz": "a3b3f662c4b672c5b910d6e70cd792a6876d5f7452caa2a40d713204616b1a9d",
+    "main/repeat_01/fold_02/DynaGS/predictions.npz": "6e9554ec180f939e0d9bf56773b2e68a9d27016613d851e1b3c0d2f91ffdb3a1",
     "shared/repeat_01/fold_02/split.npz": "693f0c2661325b727fd73633dcba393ea23326edd7f4c1d9661018a59dde4498",
+    "main/repeat_01/fold_03/DynaGS/predictions.npz": "4489a9018a5330d73c9c00cdf96ab5d6e62582282afd763aa768ea891ae6135d",
     "shared/repeat_01/fold_03/split.npz": "bc8c7f8432b90ad73f09d29ca5569e294cc621951b66e8d4c4b401e67560c7ea",
+    "main/repeat_01/fold_04/DynaGS/predictions.npz": "26b43cf5036496dce30ec75f4a957a597fba04aaf402f79ddad645ac7f423b04",
+    "shared/repeat_01/fold_04/split.npz": "c0fe2b81011f13089b97e5cc00af098a29bf1a14467a88d0acb0ac090d26ba4c",
+    "main/repeat_01/fold_05/DynaGS/predictions.npz": "6c3a78f3b6250df87dbdb1563133db1664ffd529e61dd75a151b8b5b8a9b3ee8",
     "shared/repeat_01/fold_05/split.npz": "00e6ef31a24147f7df119ef9a4e304d4ba6c5d3a54b458567d23998085aed917"
   },
-  "source_values": "Directly plotted the supplied observed and predicted values from representative_trajectories.csv.",
-  "sample_selection": "Used all nine individuals already listed in representative_samples.csv, preserving supplied low/middle/high strata and sample identities.",
-  "sample_id_meaning": "The supplied row-index sample IDs, displayed as Sample plus the exported ID.",
-  "checks": "Same sample IDs, repeat, outer fold, all fourteen actual times and identical observed values across models; outer-test membership and row-ID mapping checked.",
-  "layout": "Three rows (RGBVI, CIVE, IPCA) by three columns (low, middle, high observed level); shared y limits within each trait.",
+  "source_values": "Observed and predicted values read directly from the five supplied DynaGS predictions.npz files.",
+  "checks": "Validated eight trait names, fourteen time coordinates, sample IDs, outer-test membership, 400 unique OOF individuals and finite original-scale values.",
+  "layout": {
+    "rows": 8,
+    "columns": 3
+  },
+  "traits": [
+    "IKAW",
+    "CIVE",
+    "ExB",
+    "bn",
+    "RGB_G",
+    "RGBVI",
+    "WI",
+    "IPCA"
+  ],
   "models": [
-    "DynaGS",
-    "Cropformer"
+    "DynaGS"
   ],
   "styles": {
     "Observed": {
@@ -29,21 +43,14 @@
       "color": "#0072B2",
       "linestyle": "-",
       "marker": "o"
-    },
-    "Cropformer": {
-      "color": "#AA4499",
-      "linestyle": [
-        0,
-        [
-          5,
-          1.7,
-          1,
-          1.7
-        ]
-      ],
-      "marker": "D"
     }
   },
+  "repeat": 1,
+  "outer_folds": 5,
+  "oof_individuals": 400,
+  "n_individual_panels": 24,
+  "n_trajectory_records": 336,
+  "model_curves_per_panel": 1,
   "times": [
     10.0,
     12.0,
@@ -60,48 +67,50 @@
     80.0,
     101.0
   ],
-  "n_representative_samples": 9,
-  "n_trajectory_records": 252,
-  "line": "Straight segments connecting all fourteen supplied time-point values for each single individual; no smoothing or averaging.",
-  "markers": "All observed points displayed; model markers at indices 0, 4, 8, 11, 13 while model lines include all fourteen values.",
+  "individual_rmse": "sqrt(mean across fourteen times of (predicted-observed)^2), within each individual and trait.",
+  "individual_mae": "mean across fourteen times of abs(predicted-observed), within each individual and trait.",
+  "line": "Straight segments connecting all fourteen supplied original-scale values for each individual.",
+  "markers": "All observed points are displayed; DynaGS markers occur at time indices 0, 4, 8, 11, 13 while its line uses all fourteen values.",
   "axis_limits": {
-    "RGBVI": [
-      0.017046810375000002,
-      0.422234354625
+    "IKAW": [
+      0.06663065087050199,
+      0.24596976060420275
     ],
     "CIVE": [
-      -11.5930959,
-      21.6651479
+      -10.797348403930664,
+      21.65698661804199
+    ],
+    "ExB": [
+      -0.08037017425522208,
+      0.052763750310987234
+    ],
+    "bn": [
+      0.22642113789916038,
+      0.2786825396120548
+    ],
+    "RGB_G": [
+      105.6130184173584,
+      124.13772926330566
+    ],
+    "RGBVI": [
+      0.011857534106820822,
+      0.39826946863904594
+    ],
+    "WI": [
+      0.09663741029798985,
+      0.26269310973584653
     ],
     "IPCA": [
-      67.40626895,
-      97.29754505
+      69.17635688781738,
+      87.46477165222169
     ]
   },
   "figure_size_inches": [
     6.3,
-    5.65
+    8.85
   ],
   "dpi": 600,
   "figure": "07_论文图表\\5-13_真实玉米代表个体的表型预测轨迹.png",
-  "caption": "图 5-13 真实玉米代表个体的表型预测轨迹",
-  "caption_note": "每行依次为 RGBVI、CIVE 和 IPCA，每列依次为已提供代表样本清单中的低、中、高观测水平个体。灰色曲线为观测值，蓝色和紫色曲线分别为 DynaGS 与 Cropformer 的折外预测。各面板保留实际观测时间和性状原始尺度，同一性状采用相同纵轴范围。面板中的 Sample 编号沿用结果文件中的样本编号。",
-  "axis_labels": [
-    {
-      "artist": "axes[0].y",
-      "text": "RGBVI"
-    },
-    {
-      "artist": "axes[3].y",
-      "text": "CIVE"
-    },
-    {
-      "artist": "axes[6].y",
-      "text": "IPCA"
-    },
-    {
-      "artist": "figure.texts[3]",
-      "text": "Time"
-    }
-  ]
+  "caption": "图 5-13 DynaGS 在真实玉米八个性状上的个体表型预测轨迹",
+  "caption_note": "各行依次对应 IKAW、CIVE、ExB、bn、RGB_G、RGBVI、WI 和 IPCA，每行展示 3 个个体。灰色曲线为观测值，蓝色曲线为 DynaGS 预测值。预测来自第 1 次重复交叉验证中各个体所属外层测试折，每个面板绘制一条折外预测曲线。横坐标采用实际观测时间，同一性状采用相同纵轴范围。"
 }

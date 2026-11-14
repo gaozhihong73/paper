@@ -1,9 +1,9 @@
 {
-  "source_root": "05_\u5b9e\u9a8c\u7ed3\u679c\\5.3\\P10000_NTR400_H0.8\\rep_01",
+  "source_root": "05_实验结果\\5.3\\P10000_NTR400_H0.8\\rep_01",
   "source_values": "Saved 5.3 test_predictions.npz prediction and target arrays, aligned by test sample index and time coordinate.",
-  "selection_record": "03_\u4ee3\u7801\\dynags-thesis-figures\\data\\figure_5_1_representative_predictions.json",
+  "selection_record": "03_代码\\dynags-thesis-figures\\data\\figure_5_1_representative_predictions.json",
   "selection": "Retain the low individual fixed for figure 5-1 and the high-level alternative nearest the 90th percentile. The middle panel is explicitly selected for favorable DynaGS individual RMSE relative to all three baselines within the middle third of observed phenotype levels. All plotted trajectories are read from 5.3.",
-  "middle_candidate_table": "03_\u4ee3\u7801\\dynags-thesis-figures\\data\\figure_5_9_individual_model_trajectories_middle_candidates.csv",
+  "middle_candidate_table": "03_代码\\dynags-thesis-figures\\data\\figure_5_9_individual_model_trajectories_middle_candidates.csv",
   "replacements": [
     {
       "requested_change": "Another high-observed-level individual for visual inspection.",
@@ -83,6 +83,20 @@
       4.0
     ]
   },
-  "figure": "07_\u8bba\u6587\u56fe\u8868\\5-9_\u4ee3\u8868\u6d4b\u8bd5\u4e2a\u4f53\u7684\u6a21\u578b\u9884\u6d4b\u8f68\u8ff9\u4e0e\u6b8b\u5dee.png",
-  "selection_record_key": "initial_selection"
+  "figure": "07_论文图表\\5-9_代表测试个体的模型预测轨迹与残差.png",
+  "selection_record_key": "initial_selection",
+  "axis_labels": [
+    {
+      "artist": "axes[0].y",
+      "text": "Phenotypic value"
+    },
+    {
+      "artist": "axes[3].y",
+      "text": "Prediction error"
+    },
+    {
+      "artist": "_supxlabel",
+      "text": "Time"
+    }
+  ]
 }

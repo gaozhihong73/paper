@@ -15,6 +15,7 @@ from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 
 from dynags_figures.style import thesis_style
+from dynags_figures.labels import AXIS_LABELS
 
 ROOT = Path(__file__).resolve().parents[3]
 PROJECT = Path(__file__).resolve().parents[1]
@@ -118,7 +119,7 @@ def draw(data: pd.DataFrame) -> None:
                 ax.grid(axis="y", color="#DFE7EB", linewidth=.5)
                 ax.spines[["left", "bottom"]].set_color("#A7B8C0")
         fig.supylabel("Exact Recall@20", x=.018, fontsize=8)
-        fig.supxlabel("Training individuals", y=.115, fontsize=8)
+        fig.supxlabel(AXIS_LABELS["training_sample_size"], y=.115, fontsize=8)
         fig.legend(handles=[Patch(facecolor="#E5EBEE", edgecolor="#687E8B", linewidth=.7,
                                   label="Median and interquartile range"),
                             Line2D([], [], ls="none", marker="o", color="#455560",

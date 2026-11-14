@@ -18,5 +18,19 @@
       1.0072345679012347
     ]
   },
-  "figure": "07_\u8bba\u6587\u56fe\u8868\\5-5_\u6f5c\u5728\u8f68\u8ff9\u4e00\u81f4\u6027\u4e0e\u4e3b\u8981\u589e\u957f\u65f6\u95f4\u6062\u590d\u8bef\u5dee.png"
+  "figure": "07_论文图表\\5-5_潜在轨迹一致性与主要增长时间恢复误差.png",
+  "axis_labels": [
+    {
+      "artist": "axes[0].y",
+      "text": "Curve CCC"
+    },
+    {
+      "artist": "axes[2].y",
+      "text": "Growth-time MAE (time units)"
+    },
+    {
+      "artist": "_supxlabel",
+      "text": "Training sample size"
+    }
+  ]
 }

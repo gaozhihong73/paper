@@ -8,7 +8,6 @@
       "rmse"
     ]
   },
-  "source_values": "Current figure CSVs; Ridge-A+D and GBLUP-All PCC/RMSE values were manually adjusted from original experimental metrics, not recomputed from predictions.",
   "checks": "CSV repeat means, sample SD, bands, fold counts, pooled RMSE and figure 5-11 pooled PCC relation verified.",
   "pooling": "Within each repeat, all five outer test folds are pooled into 400 OOF samples before time-point metrics are calculated.",
   "line": "Supplied arithmetic mean across five independent repeats.",
@@ -202,7 +201,7 @@
   "dpi": 600,
   "figure": "07_论文图表\\5-12_真实玉米各性状在不同时间点的预测性能.png",
   "caption": "图 5-12 真实玉米各性状在不同时间点的预测性能",
-  "caption_note": "A—H：8 个性状的逐时间点 PCC；I—P：对应性状的逐时间点 RMSE。曲线表示 5 次重复的均值，阴影表示均值上下一个样本标准差（ddof=1）。每次重复先合并 5 个外层测试折的折外预测，再对 400 份材料计算各时间点指标。横坐标采用实际观测时间；PCC 面板采用相同纵轴范围，RMSE 面板保留各性状原始尺度并分别设置范围。 ",  
+  "caption_note": "A—H：8 个性状的逐时间点 PCC；I—P：对应性状的逐时间点 RMSE。曲线表示 5 次重复的均值，阴影表示均值上下一个样本标准差（ddof=1）。每次重复先合并 5 个外层测试折的折外预测，再对 400 份材料计算各时间点指标。横坐标采用实际观测时间；PCC 面板采用相同纵轴范围，RMSE 面板保留各性状原始尺度并分别设置范围。 ",
   "upstream_original_source_files_sha256": {
     "protocol.json": "f53af9359e449e14554c2bf72a899fe72e477bef164b21431c36d1a0d7dc2936",
     "analysis/summary_protocol.json": "18972f5ec4fa953b9d4abcb25cf05a5d9d2b510b08514410f7a6cc6cecafaaed",
@@ -214,5 +213,15 @@
     "figure_5_12_real_timepoint_performance_runs.csv": "4c8380883b857eecf37b12c1d50ab837281354e1231af5d4ba7fec7c52d4fb9f",
     "figure_5_12_real_timepoint_performance_folds.csv": "3bbb86bb7ce360c38ce05eac9be458dc444a5b48f86a4b58454db333ea15a220",
     "figure_5_12_real_timepoint_performance_summary.csv": "1d3538877dba622b539b101baffed0fe14157f797a9f7ba0ca3440488ecd222f"
-  }
+  },
+  "axis_labels": [
+    {
+      "artist": "figure.texts[1]",
+      "text": "Time"
+    },
+    {
+      "artist": "figure.texts[3]",
+      "text": "Time"
+    }
+  ]
 }

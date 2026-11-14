@@ -12,7 +12,7 @@
     "rmse": "RMSE_all minus RMSE_screened"
   },
   "models": [
-    "Ridge",
+    "Ridge-All",
     "RR-GBLUP",
     "Random Forest",
     "XGBoost",
@@ -20,6 +20,15 @@
     "Cropformer",
     "DynaGS"
   ],
+  "ridge_label": {
+    "source_table_label": "Ridge",
+    "display_label": "Ridge-All",
+    "encoding": "Additive SNP dosage only; no dominance features.",
+    "comparison": "The same additive Ridge model with all SNPs versus screened SNPs.",
+    "run_record": "05_实验结果/5.4/P10000_NTR400_H0.8/rep_01/ridge_all/run_manifest.json",
+    "registry": "https://github.com/gaozhihong73/Code/blob/main/experiments/e3/baselines/registry.py#L40-L43",
+    "implementation": "https://github.com/gaozhihong73/Code/blob/main/experiments/e3/baselines/adapters.py#L89-L104"
+  },
   "displayed_metrics": [
     "pcc",
     "rmse"
@@ -41,5 +50,5 @@
   "dpi": 600,
   "figure": "07_论文图表\\5-10_同一模型筛选前后的预测收益.png",
   "caption": "图 5-10 同一模型筛选前后的预测收益",
-  "caption_note": "A：PCC 提升；B：RMSE 降低。点表示 10 次独立重复的配对收益均值，误差线表示所提供汇总结果中的 95% 置信区间。ΔPCC 为筛选后减筛选前，ΔRMSE 为筛选前减筛选后，正值均表示筛选带来预测收益。"
+  "caption_note": "A：PCC 提升；B：RMSE 降低。点表示 10 次独立重复的配对收益均值，误差线表示所提供汇总结果中的 95% 置信区间。ΔPCC 为筛选后减筛选前，ΔRMSE 为筛选前减筛选后，正值均表示筛选带来预测收益。Ridge-All 表示仅采用加性剂量编码的岭回归，该行比较完整 SNP 与筛选 SNP 两种输入。"
 }

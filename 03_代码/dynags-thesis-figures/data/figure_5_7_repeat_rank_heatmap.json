@@ -30,5 +30,15 @@
     "Cropformer",
     "DynaGS"
   ],
-  "figure": "07_\u8bba\u6587\u56fe\u8868\\5-7_\u4e0d\u540c\u6a21\u578b\u5728\u72ec\u7acb\u91cd\u590d\u4e2d\u7684\u9884\u6d4b\u6027\u80fd\u6392\u540d.png"
+  "figure": "07_论文图表\\5-7_不同模型在独立重复中的预测性能排名.png",
+  "axis_labels": [
+    {
+      "artist": "axes[3].y",
+      "text": "Rank (1 = best)"
+    },
+    {
+      "artist": "_supxlabel",
+      "text": "Repeat"
+    }
+  ]
 }

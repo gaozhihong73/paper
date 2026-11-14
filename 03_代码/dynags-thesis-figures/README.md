@@ -29,6 +29,8 @@
 
 单独性状名称、标准化轨迹的 Z 分数、轨迹间相关系数和真实/模拟遗传力符号按各自定义保留，不按字面相近强制替换。新增或修改图件后先运行 `uv run python scripts/check_axis_labels.py` 检查命名，再检查最终图片的布局。
 
+共享纵轴标题使用 `src/dynags_figures/layout.py` 的 `place_shared_ylabel` 定位：与最左列最宽可见刻度文字间隔 6 pt，标题相对数据绘图区垂直居中，左边距随刻度宽度调整。该方法在 `subplots_adjust` 后调用，避免使用固定整图横坐标产生过大空隙。
+
 ## 环境初始化
 
 ```powershell

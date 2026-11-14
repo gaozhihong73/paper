@@ -1,0 +1,73 @@
+{
+  "source_root": "05_实验结果\\5.5\\outputs\\tfpp\\maize",
+  "source_files_sha256": {
+    "protocol.json": "f53af9359e449e14554c2bf72a899fe72e477bef164b21431c36d1a0d7dc2936",
+    "analysis/summary_protocol.json": "18972f5ec4fa953b9d4abcb25cf05a5d9d2b510b08514410f7a6cc6cecafaaed",
+    "analysis/repeat_metrics.csv": "a134a86a22934744c4d09af77385386c3a95cdeb5d93fac933aadbc3b7f337de",
+    "analysis/summary.csv": "a5c38aa985876a0b990bca617405e9656f11b177d2447e7beb3bf8072bdf7b0d",
+    "analysis/paired_differences.csv": "3888bed9f8522ee1f181d32d27814e1435050745b7fd2a5a1e86cc57d6960766",
+    "analysis/paired_summary.csv": "ae60bcdcb84f6a938c9fda1eeddb52238d1738eaee553195d8c3b636958b6e24"
+  },
+  "source_filter": {
+    "model": "DynaGS",
+    "suite": [
+      "main",
+      "single"
+    ],
+    "time": "all",
+    "paired_comparison": "joint_vs_single",
+    "paired_reference": "single"
+  },
+  "source_values": "Provided repeat-level OOF metrics and paired differences; no metrics recomputed from predictions.",
+  "checks": "Verified within-repeat differences, supplied means/SD/raw_repeats/counts and shared split/screening task references for 25 joint plus 200 single-trait tasks.",
+  "directions": {
+    "pcc": "PCC_joint minus PCC_single",
+    "r2": "R2_time_joint minus R2_time_single",
+    "rmse": "RMSE_single minus RMSE_joint on each trait's original scale"
+  },
+  "interval": "Two-sided 95% Student-t interval for the mean of five paired repeat differences: mean +/- t(0.975, df=4) * sample_SD / sqrt(5); ddof=1.",
+  "points": "Five provided repeat differences shown as small grey points; blue diamonds and error bars show the paired mean and its 95% CI.",
+  "vertical_offsets": "Within-row offsets separate repeat points from the mean interval; vertical positions carry no numerical meaning.",
+  "displayed_metrics": [
+    "pcc",
+    "r2"
+  ],
+  "saved_metrics": [
+    "pcc",
+    "r2",
+    "rmse"
+  ],
+  "rmse": "Preserved separately for all eight traits without averaging different trait scales.",
+  "traits": [
+    "IKAW",
+    "CIVE",
+    "ExB",
+    "bn",
+    "RGB_G",
+    "RGBVI",
+    "WI",
+    "IPCA"
+  ],
+  "n_pairs_per_trait": 5,
+  "n_oof_samples_per_repeat": 400,
+  "n_absolute_records": 240,
+  "n_pair_records": 120,
+  "axis_limits": {
+    "pcc": [
+      -0.025283905628204435,
+      0.022256110617749486
+    ],
+    "r2": [
+      -0.013145293200787105,
+      0.01263861091347276
+    ]
+  },
+  "figure_size_inches": [
+    6.3,
+    4.2
+  ],
+  "dpi": 600,
+  "figure": "07_论文图表\\5-14_单性状与多性状联合训练的配对预测性能差异.png",
+  "caption": "图 5-14 单性状与多性状联合训练的配对预测性能差异",
+  "caption_note": "A：联合训练相对单性状训练的 PCC 差值；B：时间校正 R² 差值。灰色点表示 5 次重复的配对差值，蓝色菱形及误差线表示配对差值均值和基于 5 个重复的双侧 95% Student-t 置信区间（自由度为 4）。各项差值均为联合训练减单性状训练，正值表示联合训练对应指标更高。每次重复使用合并 5 个外层测试折后的折外预测计算指标。"
+}

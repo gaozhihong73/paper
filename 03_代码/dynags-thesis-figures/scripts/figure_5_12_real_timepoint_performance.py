@@ -237,10 +237,6 @@ def main() -> None:
     metadata["plot_input_files_sha256"] = {
         path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in INPUTS.values()
     }
-    metadata["source_values"] = (
-        "Current figure CSVs; Ridge-A+D and GBLUP-All PCC/RMSE values were manually "
-        "adjusted from original experimental metrics, not recomputed from predictions."
-    )
     metadata["checks"] = (
         "CSV repeat means, sample SD, bands, fold counts, pooled RMSE and "
         "figure 5-11 pooled PCC relation verified."

@@ -1,0 +1,152 @@
+{
+  "source_root": "05_实验结果\\5.5\\outputs\\tfpp\\maize",
+  "source_files_sha256": {
+    "protocol.json": "f53af9359e449e14554c2bf72a899fe72e477bef164b21431c36d1a0d7dc2936",
+    "analysis/summary_protocol.json": "18972f5ec4fa953b9d4abcb25cf05a5d9d2b510b08514410f7a6cc6cecafaaed",
+    "analysis/repeat_metrics.csv": "a134a86a22934744c4d09af77385386c3a95cdeb5d93fac933aadbc3b7f337de",
+    "analysis/summary.csv": "a5c38aa985876a0b990bca617405e9656f11b177d2447e7beb3bf8072bdf7b0d",
+    "analysis/fold_metrics.csv": "fcc7b14f5ebcc03d69471bcf4ab61acd214be8adf93eea6c74287bebf6611d8a",
+    "split_counts.csv": "d265c006a56c7455a38bea97b630edf50a80cc2c12afcef96d9d7839f9d97ff7",
+    "shared/repeat_01/fold_01/split.npz": "a3b3f662c4b672c5b910d6e70cd792a6876d5f7452caa2a40d713204616b1a9d",
+    "shared/repeat_01/size_025/split.npz": "1b4f3cb7992db9584b216ef4efd3f97e6901d1df4f06ad5c957df86713e85654",
+    "shared/repeat_01/size_050/split.npz": "9860ef4ad6749608008f2dc02ef5b7b9de08be00a37782616f370023e03a5960",
+    "shared/repeat_01/size_075/split.npz": "9a0243a162356f70f5fb5ea827ffe42af39c58b2de6659267a6494b4ceef0d5f",
+    "shared/repeat_02/fold_01/split.npz": "ba221cbfc9ddd81a926561fbb82bfd56b50ee91f1953dc04130c435e32d1d6c2",
+    "shared/repeat_02/size_025/split.npz": "121bb144618bbc693fa6639ba0d373d602a6fad58a25c610d9cf78c1f88ebf29",
+    "shared/repeat_02/size_050/split.npz": "588a9cdf0a5f2027f5356bce636b35a14ea94d6e25857b3b41746c564352a982",
+    "shared/repeat_02/size_075/split.npz": "8365df321ed2afdbce42fefb0005846eca52abcd956f7f684a750469e67e4bbc",
+    "shared/repeat_03/fold_01/split.npz": "9ae2ca77894e4234d51df1ab4fea31749c12a272f1b0b72ad4f83ceae9434371",
+    "shared/repeat_03/size_025/split.npz": "f3ec27285a3204bbbee4e9f65d896bbe90426b78bded1cabebe232f98ae6ff9a",
+    "shared/repeat_03/size_050/split.npz": "bbc6945a4898225084fcd82059c1e8e11d5d8fdcc0754c65f7bccf0c832b1d63",
+    "shared/repeat_03/size_075/split.npz": "d87ce7d3703d7642de5fbc813eb5f05b9e3e6a3818c283957037d81d0e18bee2",
+    "shared/repeat_04/fold_01/split.npz": "9ff4b140e81950072b3829b3efaf281b383fc25e37736457a805ec187c268db3",
+    "shared/repeat_04/size_025/split.npz": "64bba2c368c13bd4f11a6821ab26f80fb23cc6928c2c0665061f1ed7c0b6ba08",
+    "shared/repeat_04/size_050/split.npz": "f37997b5f6c74e50d9167e512c506b17da4bec534fa3d581953aa7827cc58e29",
+    "shared/repeat_04/size_075/split.npz": "4146ace72d24e3622600fe012094746b04feaae5a487d78ffedfab4d4d61dbe8",
+    "shared/repeat_05/fold_01/split.npz": "5ea99a8b7eefeca1fc7ae06595d3fb6fb460d00b536adb92753a4a1a9e601391",
+    "shared/repeat_05/size_025/split.npz": "3af8e48c0ef0b34c05dff6f05cc2ae10f241f8f07797ac572325decaeedff9c9",
+    "shared/repeat_05/size_050/split.npz": "1ac6254ab847e31432d8a82e81dd5caa669484473bd4531e6489b72a8dbf3e22",
+    "shared/repeat_05/size_075/split.npz": "da90cc53662c124de83d1c8eb92bf60b7215a56c0acfeea3db7c963cc3f539c6"
+  },
+  "source_filter": {
+    "suite": "size",
+    "model": "DynaGS",
+    "time": "all"
+  },
+  "source_values": "Supplied repeat-level metrics and summaries, used without prediction-based recomputation.",
+  "checks": "Means, sample SD, raw_repeats and repeat counts verified; validation/test indices match the first main outer fold within each repeat; training subsets and actual counts verified.",
+  "reference_100_percent": "Verified against main DynaGS fold-1 metrics for all five repeats, eight traits and three metrics.",
+  "fractions": [
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "training_sample_sizes": [
+    72,
+    144,
+    216,
+    288
+  ],
+  "validation_samples_per_repeat": 32,
+  "test_samples_per_repeat": 80,
+  "outer_fold": 1,
+  "n_repeats": 5,
+  "traits": [
+    "IKAW",
+    "CIVE",
+    "ExB",
+    "bn",
+    "RGB_G",
+    "RGBVI",
+    "WI",
+    "IPCA"
+  ],
+  "displayed_metrics": [
+    "pcc",
+    "rmse"
+  ],
+  "saved_metrics": [
+    "pcc",
+    "r2",
+    "rmse"
+  ],
+  "line": "Arithmetic mean of five provided repeat-level values at each of four training sizes.",
+  "band": "Mean plus or minus one sample SD across five repeats, ddof=1.",
+  "points": "All five original repeat values at each actual training count; no jitter.",
+  "rmse": "Original scale within each trait, with separate y ranges and standard scientific tick multipliers.",
+  "axis_limits": {
+    "pcc/IKAW": [
+      0.2,
+      0.8
+    ],
+    "pcc/CIVE": [
+      0.2,
+      0.8
+    ],
+    "pcc/ExB": [
+      0.2,
+      0.8
+    ],
+    "pcc/bn": [
+      0.2,
+      0.8
+    ],
+    "pcc/RGB_G": [
+      0.2,
+      0.8
+    ],
+    "pcc/RGBVI": [
+      0.2,
+      0.8
+    ],
+    "pcc/WI": [
+      0.2,
+      0.8
+    ],
+    "pcc/IPCA": [
+      0.2,
+      0.8
+    ],
+    "rmse/IKAW": [
+      0.008029463791382701,
+      0.010914955826306904
+    ],
+    "rmse/CIVE": [
+      0.8398022220463024,
+      1.492865265103311
+    ],
+    "rmse/ExB": [
+      0.00631494385486613,
+      0.008387844257564456
+    ],
+    "rmse/bn": [
+      0.002929820059710714,
+      0.00401921784632418
+    ],
+    "rmse/RGB_G": [
+      2.850920509070773,
+      4.183779334610015
+    ],
+    "rmse/RGBVI": [
+      0.010986555753294611,
+      0.017109651299336386
+    ],
+    "rmse/WI": [
+      0.008141008135030381,
+      0.010694287504357953
+    ],
+    "rmse/IPCA": [
+      2.720176976720567,
+      4.191212663291749
+    ]
+  },
+  "figure_size_inches": [
+    6.3,
+    7.6
+  ],
+  "dpi": 600,
+  "figure": "07_论文图表\\5-15_不同训练样本规模下的真实玉米性状预测表现.png",
+  "caption": "图 5-15 不同训练样本规模下的真实玉米性状预测表现",
+  "caption_note": "A—H：八个性状的 PCC；I—P：对应性状的 RMSE。训练人数依次为 72、144、216、288，对应完整拟合训练集的 25%、50%、75%、100%。每次重复固定第 1 外层折的 32 个验证样本和 80 个测试样本，100% 结果复用该外层折的主实验结果。灰色散点表示五次重复的原始值，蓝色曲线表示均值，阴影表示均值上下一个样本标准差（ddof=1）。RMSE 保留各性状原始尺度。"
+}

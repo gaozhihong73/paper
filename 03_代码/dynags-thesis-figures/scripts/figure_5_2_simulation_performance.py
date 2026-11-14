@@ -15,6 +15,7 @@ from matplotlib.lines import Line2D
 from scipy.stats import t as student_t
 
 from dynags_figures.style import thesis_style
+from dynags_figures.labels import AXIS_LABELS
 
 ROOT = Path(__file__).resolve().parents[3]
 PROJECT = Path(__file__).resolve().parents[1]
@@ -133,7 +134,7 @@ def draw(summary: pd.DataFrame) -> None:
                     for s in SETTINGS]
         fig.legend(handles=legend_s, loc="lower center", bbox_to_anchor=(.5, .033),
                    ncol=2, fontsize=7.5, columnspacing=3.4, handlelength=2.8)
-        fig.supxlabel("Training individuals", y=.165, fontsize=8)
+        fig.supxlabel(AXIS_LABELS["training_sample_size"], y=.165, fontsize=8)
         fig.subplots_adjust(left=.078, right=.985, top=.94, bottom=.25,
                             wspace=.36, hspace=.34)
         fig.savefig(OUTPUT, dpi=600, facecolor="white")
@@ -152,7 +153,7 @@ if __name__ == "__main__":
                 "metrics": {"pcc": "Mean across defined time-point Pearson correlations over individuals.",
                             "r2_time": "1 - total SSE / sum of squared deviations from each test time mean.",
                             "rmse": "Arithmetic mean of original-scale time-point RMSE values."},
-                "x_axis": "Training individuals, logarithmic scale base 2.",
+                "x_axis": AXIS_LABELS["training_sample_size"] + ", logarithmic scale base 2.",
                 "figure": str(OUTPUT.relative_to(ROOT))}
     (destination / f"{STEM}.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
     draw(summary)

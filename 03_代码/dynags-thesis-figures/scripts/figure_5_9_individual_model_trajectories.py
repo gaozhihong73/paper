@@ -14,6 +14,7 @@ import pandas as pd
 from matplotlib.lines import Line2D
 
 from dynags_figures.style import thesis_style
+from dynags_figures.labels import AXIS_LABELS
 from figure_5_8_timepoint_model_performance import MODELS, STYLES
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -160,7 +161,7 @@ def draw(data: pd.DataFrame) -> dict:
             axes[1, j].axhline(0, color="#8DA0AC", lw=.7, linestyle=(0, (3, 2)), zorder=1)
             axes[1, j].set_ylim(-residual_limit, residual_limit)
             axes[1, j].set_yticks(np.linspace(-residual_limit, residual_limit, 5))
-            axes[1, j].set_title(f"{'DEF'[j]}  Prediction residuals", loc="left",
+            axes[1, j].set_title(f"{'DEF'[j]}  Prediction errors", loc="left",
                                  fontsize=8, color="#193C51", pad=7)
             for ax in axes[:, j]:
                 ax.set_xlim(.5, 20.5)
@@ -168,9 +169,9 @@ def draw(data: pd.DataFrame) -> dict:
                 ax.tick_params(length=2.5, pad=2, labelsize=7)
                 ax.grid(axis="y", color="#DFE7EB", lw=.5)
                 ax.spines[["left", "bottom"]].set_color("#A7B8C0")
-        axes[0, 0].set_ylabel("Phenotype value", fontsize=8, labelpad=5)
-        axes[1, 0].set_ylabel("Prediction − observed", fontsize=8, labelpad=5)
-        fig.supxlabel("Time point", y=.115, fontsize=8)
+        axes[0, 0].set_ylabel(AXIS_LABELS["phenotypic_value"], fontsize=8, labelpad=5)
+        axes[1, 0].set_ylabel(AXIS_LABELS["prediction_error"], fontsize=8, labelpad=5)
+        fig.supxlabel(AXIS_LABELS["time"], y=.115, fontsize=8)
         handles = [Line2D([], [], marker="o", ls="none", color="#7B8992", markersize=3,
                           label="Observed")]
         handles.extend(Line2D([], [], **STYLES[model], lw=1.4 if model == "DynaGS" else 1.,

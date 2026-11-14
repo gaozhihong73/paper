@@ -14,6 +14,7 @@ import pandas as pd
 from figure_3_4_trait_trajectories import TRAITS
 
 from dynags_figures.style import thesis_style
+from dynags_figures.labels import AXIS_LABELS
 
 ROOT = Path(__file__).resolve().parents[3]
 PROJECT = Path(__file__).resolve().parents[1]
@@ -70,7 +71,7 @@ def draw(rows: list[dict[str, str | int | float]]) -> None:
         ax.set_xlim(0, 1.0)
         ax.set_ylim(len(rows) - 0.5, -0.5)
         ax.set_xticks(np.arange(0, 1.01, 0.2))
-        ax.set_xlabel("Heritability estimate (H2)", labelpad=8)
+        ax.set_xlabel(AXIS_LABELS["estimated_heritability"], labelpad=8)
         ax.tick_params(axis="y", length=0, pad=7, labelsize=7.9)
         ax.tick_params(axis="x", length=3, labelsize=7.5)
         ax.grid(axis="x", color="#DDE6EB", linewidth=0.55)

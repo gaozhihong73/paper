@@ -17,6 +17,7 @@ from matplotlib.patches import Patch
 
 from dynags_figures.style import thesis_style
 from dynags_figures.labels import AXIS_LABELS
+from dynags_figures.layout import place_shared_ylabel
 
 ROOT = Path(__file__).resolve().parents[3]
 PROJECT = Path(__file__).resolve().parents[1]
@@ -122,7 +123,6 @@ def draw(rows: list[dict]) -> None:
             ax.spines["left"].set_color("#A7B8C0")
             ax.spines["bottom"].set_color("#A7B8C0")
 
-        fig.supylabel(AXIS_LABELS["phenotypic_value"], x=0.017, fontsize=8)
         fig.supxlabel(AXIS_LABELS["time"], y=0.082, fontsize=8)
         fig.legend(
             handles=[
@@ -138,6 +138,7 @@ def draw(rows: list[dict]) -> None:
         )
         fig.subplots_adjust(left=0.12, right=0.98, top=0.945, bottom=0.16,
                             wspace=0.30, hspace=0.42)
+        place_shared_ylabel(fig, axes, AXIS_LABELS["phenotypic_value"])
         FIGURE.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(FIGURE, dpi=300, facecolor="white", bbox_inches="tight",
                     pad_inches=0.13)
