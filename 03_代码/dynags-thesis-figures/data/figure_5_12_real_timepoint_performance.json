@@ -18,7 +18,7 @@
   "models": [
     "Mean",
     "Ridge-A+D",
-    "GBLUP-All",
+    "GBLUP",
     "XGBoost",
     "Cropformer",
     "DynaGS"
@@ -46,7 +46,7 @@
       ],
       "marker": "^"
     },
-    "GBLUP-All": {
+    "GBLUP": {
       "color": "#009E73",
       "linestyle": [
         0,
@@ -91,7 +91,7 @@
     "Mean",
     "Cropformer",
     "XGBoost",
-    "GBLUP-All",
+    "GBLUP",
     "Ridge-A+D",
     "DynaGS"
   ],
@@ -210,9 +210,9 @@
     "analysis/summary.csv": "a5c38aa985876a0b990bca617405e9656f11b177d2447e7beb3bf8072bdf7b0d"
   },
   "plot_input_files_sha256": {
-    "figure_5_12_real_timepoint_performance_runs.csv": "4c8380883b857eecf37b12c1d50ab837281354e1231af5d4ba7fec7c52d4fb9f",
-    "figure_5_12_real_timepoint_performance_folds.csv": "3bbb86bb7ce360c38ce05eac9be458dc444a5b48f86a4b58454db333ea15a220",
-    "figure_5_12_real_timepoint_performance_summary.csv": "1d3538877dba622b539b101baffed0fe14157f797a9f7ba0ca3440488ecd222f"
+    "figure_5_12_real_timepoint_performance_runs.csv": "8e80020afe50b61840b601fd9d7ed8727f3d055b8710b8dc8336eb66819a6760",
+    "figure_5_12_real_timepoint_performance_folds.csv": "2bc40cc48a81852bde9dcb2996c48ac7fba0e93f4012f53f7508556774cae0a5",
+    "figure_5_12_real_timepoint_performance_summary.csv": "151097cec3f98ef4b2afe85feeaf479f115114da1f0179a82192c75db4090bb9"
   },
   "axis_labels": [
     {

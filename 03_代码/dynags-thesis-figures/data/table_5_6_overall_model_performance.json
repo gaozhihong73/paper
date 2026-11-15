@@ -10,9 +10,9 @@
   "display_precision": 3,
   "comparisons": {
     "baseline": "XGBoost",
-    "pcc_difference": 0.2422593445334047,
-    "r2_difference": 0.3387078407941254,
-    "rmse_reduction": 0.23980739450520883,
-    "relative_rmse_reduction_percent": 22.996326624533825
+    "pcc_difference": 0.1824965740581218,
+    "r2_difference": 0.26079245939484696,
+    "rmse_reduction": 0.17836645134345397,
+    "relative_rmse_reduction_percent": 17.104448269479832
   }
 }

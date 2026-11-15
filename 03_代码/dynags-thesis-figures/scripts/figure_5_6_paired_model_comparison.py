@@ -22,8 +22,8 @@ DATA = PROJECT / "data"
 STEM = "figure_5_6_paired_model_comparison"
 OUTPUT = ROOT / "07_论文图表" / "5-6_DynaGS与对比模型的配对预测性能差异.png"
 MODELS = {
-    "Mean": "mean", "Ridge-All": "ridge_all", "Ridge-A+D": "ridge_a_plus_d",
-    "GBLUP-All": "gblup_all", "RR-GBLUP": "rr_gblup",
+    "Mean": "mean", "Ridge": "ridge_all", "Ridge-A+D": "ridge_a_plus_d",
+    "GBLUP": "gblup_all", "RR-GBLUP": "rr_gblup",
     "Random Forest": "random_forest", "XGBoost": "xgboost",
     "DNNGP-SNP": "dnngp_snp", "DLGWAS": "dlgwas", "WheatGP": "wheatgp",
     "Cropformer": "cropformer", "DynaGS": "dynags",

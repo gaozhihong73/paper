@@ -25,12 +25,12 @@ from dynags_figures.labels import AXIS_LABELS
 DATA = PROJECT / "data"
 STEM = "figure_5_12_real_timepoint_performance"
 OUTPUT = ROOT / "07_论文图表/5-12_真实玉米各性状在不同时间点的预测性能.png"
-MODELS = ["Mean", "Ridge-A+D", "GBLUP-All", "XGBoost", "Cropformer", "DynaGS"]
-DRAW_ORDER = ["Mean", "Cropformer", "XGBoost", "GBLUP-All", "Ridge-A+D", "DynaGS"]
+MODELS = ["Mean", "Ridge-A+D", "GBLUP", "XGBoost", "Cropformer", "DynaGS"]
+DRAW_ORDER = ["Mean", "Cropformer", "XGBoost", "GBLUP", "Ridge-A+D", "DynaGS"]
 STYLES = {
     "Mean": {"color": "#7A8992", "linestyle": (0, (1, 1.7)), "marker": "x"},
     "Ridge-A+D": {"color": "#E69F00", "linestyle": (0, (4, 2)), "marker": "^"},
-    "GBLUP-All": {"color": "#009E73", "linestyle": (0, (1, 1.7)), "marker": "v"},
+    "GBLUP": {"color": "#009E73", "linestyle": (0, (1, 1.7)), "marker": "v"},
     "XGBoost": {"color": "#882255", "linestyle": (0, (5, 2)), "marker": "s"},
     "Cropformer": {"color": "#AA4499", "linestyle": (0, (5, 1.7, 1, 1.7)), "marker": "D"},
     "DynaGS": {"color": "#0072B2", "linestyle": "-", "marker": "o"},

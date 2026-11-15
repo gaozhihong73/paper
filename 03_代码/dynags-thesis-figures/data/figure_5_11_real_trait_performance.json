@@ -29,7 +29,7 @@
   "models": [
     "Mean",
     "Ridge-A+D",
-    "GBLUP-All",
+    "GBLUP",
     "XGBoost",
     "Cropformer",
     "DynaGS"
@@ -37,13 +37,13 @@
   "baselines": [
     "Mean",
     "Ridge-A+D",
-    "GBLUP-All",
+    "GBLUP",
     "XGBoost",
     "Cropformer"
   ],
   "display": {
-    "A": "Six models by eight traits; supplied mean PCC; no cell numbers.",
-    "B": "Five baselines by eight traits; supplied mean paired delta PCC; dashed borders identify negative differences.",
+    "A": "Six models by eight traits; mean PCC labels to three decimal places.",
+    "B": "Five baselines by eight traits; mean paired delta PCC labels to three decimal places; dashed borders identify negative differences.",
     "colorbars": "Vertical, aligned with the full height of each heatmap.",
     "color_limits": {
       "A": [
@@ -63,7 +63,8 @@
         ],
         "min": -0.0866492912304488,
         "max": 0.7110968929757389,
-        "negative_cells": 8
+        "negative_cells": 8,
+        "value_labels": 48
       },
       "B": {
         "shape": [
@@ -72,7 +73,8 @@
         ],
         "min": 0.02015601933578044,
         "max": 0.7936167308275293,
-        "negative_cells": 0
+        "negative_cells": 0,
+        "value_labels": 40
       }
     }
   },
@@ -83,7 +85,7 @@
   "dpi": 600,
   "figure": "07_论文图表\\5-11_真实玉米各性状的整体预测性能比较.png",
   "caption": "图 5-11 真实玉米各性状的整体预测性能比较",
-  "caption_note": "A：6 种模型在 8 个性状上的 PCC 均值；B：DynaGS 相对各对照模型的配对 PCC 差值均值。每次重复先合并 5 个外层测试折的折外预测，在各时间点计算 PCC 并取有效时间点均值，再对 5 次重复取平均。ΔPCC 为同一重复、同一性状上 DynaGS 的 PCC 减去对照模型的 PCC，正值表示 DynaGS 的 PCC 更高；虚线框表示均值小于 0。两部分分别使用各自的色标。",
+  "caption_note": "A：6 种模型在 8 个性状上的 PCC 均值；B：DynaGS 相对各对照模型的配对 PCC 差值均值。两个面板的数值均保留三位小数。每次重复先合并 5 个外层测试折的折外预测，在各时间点计算 PCC 并取有效时间点均值，再对 5 次重复取平均。ΔPCC 为同一重复、同一性状上 DynaGS 的 PCC 减去对照模型的 PCC，正值表示 DynaGS 的 PCC 更高；虚线框表示均值小于 0。两部分分别使用各自的色标。",
   "upstream_original_source_files_sha256": {
     "protocol.json": "f53af9359e449e14554c2bf72a899fe72e477bef164b21431c36d1a0d7dc2936",
     "analysis/summary_protocol.json": "18972f5ec4fa953b9d4abcb25cf05a5d9d2b510b08514410f7a6cc6cecafaaed",
@@ -93,8 +95,8 @@
     "analysis/paired_differences.csv": "3888bed9f8522ee1f181d32d27814e1435050745b7fd2a5a1e86cc57d6960766"
   },
   "plot_input_files_sha256": {
-    "figure_5_11_real_trait_performance_runs.csv": "3b114be93b035e2c6641c71b1e3857bbfd7f44023d50cc38c6a296ae5aeb4553",
-    "figure_5_11_real_trait_performance_pairs.csv": "6adbf834ef8352d80d9a4845fdf08d34039765cc02132f4ababbbc4d30f9794a",
-    "figure_5_11_real_trait_performance_summary.csv": "00c0f7085594a0f8aa134c940ae9f8e42768183f788b5fdbc4a2b2e9bee6f81a"
+    "figure_5_11_real_trait_performance_runs.csv": "16a50e70c4c6d4bb76d81b30637a21c865b76413eca3638ee5d795213d033645",
+    "figure_5_11_real_trait_performance_pairs.csv": "c360c2ce9a79dd0217b0a4d312c341116a722b431a2faf8415b690eed737ce6d",
+    "figure_5_11_real_trait_performance_summary.csv": "6c873b04970530170059f401ca9f18ce00512459243ed2e36742d632426a5c56"
   }
 }

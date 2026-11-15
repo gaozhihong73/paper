@@ -1,5 +1,5 @@
 {
-  "source_root": "05_实验结果\\5.3\\P10000_NTR400_H0.8",
+  "source_root": "05_\u5b9e\u9a8c\u7ed3\u679c\\5.3\\P10000_NTR400_H0.8",
   "source_fields": [
     "metrics.json/by_time/pcc",
     "metrics.json/by_time/rmse"
@@ -66,7 +66,7 @@
   },
   "axis_limits": {
     "pcc": [
-      0.0,
+      -0.006792379273069159,
       1.0
     ],
     "rmse": [
@@ -74,19 +74,5 @@
       2.227031627667132
     ]
   },
-  "figure": "07_论文图表\\5-8_代表模型在不同时间点的预测性能.png",
-  "axis_labels": [
-    {
-      "artist": "axes[0].y",
-      "text": "PCC"
-    },
-    {
-      "artist": "axes[1].y",
-      "text": "RMSE"
-    },
-    {
-      "artist": "_supxlabel",
-      "text": "Time"
-    }
-  ]
+  "figure": "07_\u8bba\u6587\u56fe\u8868\\5-8_\u4ee3\u8868\u6a21\u578b\u5728\u4e0d\u540c\u65f6\u95f4\u70b9\u7684\u9884\u6d4b\u6027\u80fd.png"
 }

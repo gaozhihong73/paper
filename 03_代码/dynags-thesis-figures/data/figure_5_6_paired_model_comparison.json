@@ -16,9 +16,9 @@
   "display": "Forest plots with mean points and paired 95% confidence intervals. PCC panel contains 10 baselines and RMSE panel contains 11. Each panel has its own model labels; input order retained.",
   "baseline_order": [
     "Mean",
-    "Ridge-All",
+    "Ridge",
     "Ridge-A+D",
-    "GBLUP-All",
+    "GBLUP",
     "RR-GBLUP",
     "Random Forest",
     "XGBoost",
@@ -29,12 +29,12 @@
   ],
   "axis_limits": {
     "pcc": [
-      -0.03484598393103981,
-      0.5897012665252891
+      -0.03254078661279465,
+      0.5506902349857555
     ],
     "rmse": [
-      -0.026442556503805597,
-      0.4474894177567101
+      -0.02355059393863943,
+      0.3985485128077442
     ]
   },
   "figure": "07_\u8bba\u6587\u56fe\u8868\\5-6_DynaGS\u4e0e\u5bf9\u6bd4\u6a21\u578b\u7684\u914d\u5bf9\u9884\u6d4b\u6027\u80fd\u5dee\u5f02.png"

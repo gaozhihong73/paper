@@ -1,7 +1,7 @@
 ﻿model,source_model,metric,mean_difference,ci95_lower,ci95_upper,n_repeats
-Ridge-All,Ridge,pcc,0.16,0.132,0.189,10
-Ridge-All,Ridge,r2,0.093,0.07,0.117,10
-Ridge-All,Ridge,rmse,0.059,0.042,0.076,10
+Ridge,Ridge,pcc,0.16,0.132,0.189,10
+Ridge,Ridge,r2,0.093,0.07,0.117,10
+Ridge,Ridge,rmse,0.059,0.042,0.076,10
 RR-GBLUP,RR-GBLUP,pcc,0.136,0.114,0.158,10
 RR-GBLUP,RR-GBLUP,r2,0.07,0.056,0.083,10
 RR-GBLUP,RR-GBLUP,rmse,0.043,0.034,0.051,10

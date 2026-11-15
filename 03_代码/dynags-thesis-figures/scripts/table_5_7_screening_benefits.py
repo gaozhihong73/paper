@@ -21,7 +21,7 @@ NOTE = (
     "注：数值为 10 次独立重复中同一模型配对差值的均值，方括号内为 95% 置信区间。"
     "ΔPCC 和 $\\Delta R^2_{\\mathrm{time}}$ 为筛选后减筛选前，ΔRMSE 为筛选前减筛选后，"
     "正值均表示筛选带来预测收益。筛选前输入完整的 10,000 个 SNP。"
-    "Ridge-All 表示仅采用加性剂量编码的岭回归，该行比较完整 SNP 与筛选 SNP 两种输入。"
+    "Ridge 表示仅采用加性剂量编码的岭回归，该行比较完整 SNP 与筛选 SNP 两种输入。"
 )
 
 
@@ -65,7 +65,7 @@ def main() -> None:
         "directions": {"pcc": "PCC_screened minus PCC_all",
                        "r2_time": "R2_time_screened minus R2_time_all",
                        "rmse": "RMSE_all minus RMSE_screened"},
-        "model_labels": {"Ridge": "Ridge-All"},
+        "model_labels": {"Ridge": "Ridge"},
         "caption": TITLE, "note": NOTE,
         "output": str(OUTPUT.relative_to(ROOT)),
     }

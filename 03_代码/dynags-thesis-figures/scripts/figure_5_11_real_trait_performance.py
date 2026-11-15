@@ -25,7 +25,7 @@ from dynags_figures.style import thesis_style
 DATA = PROJECT / "data"
 STEM = "figure_5_11_real_trait_performance"
 OUTPUT = ROOT / "07_论文图表/5-11_真实玉米各性状的整体预测性能比较.png"
-MODELS = ["Mean", "Ridge-A+D", "GBLUP-All", "XGBoost", "Cropformer", "DynaGS"]
+MODELS = ["Mean", "Ridge-A+D", "GBLUP", "XGBoost", "Cropformer", "DynaGS"]
 BASELINES = MODELS[:-1]
 INPUTS = {suffix: DATA / f"{STEM}_{suffix}.csv" for suffix in ("runs", "pairs", "summary")}
 
@@ -103,6 +103,7 @@ def draw(cells: pd.DataFrame, traits: list[str]) -> dict:
                                left=.18, right=.89, top=.93, bottom=.085,
                                hspace=.43, wspace=.07)
         image_checks = {}
+        number_annotations = []
         for i, (panel, models, title, cmap, norm, ticks, label) in enumerate([
             ("A", MODELS, "A  Mean PCC across repeats", "Blues", Normalize(-.1, .8),
              [-.1, 0, .2, .4, .6, .8], "PCC"),
@@ -126,10 +127,18 @@ def draw(cells: pd.DataFrame, traits: list[str]) -> dict:
             for spine in ax.spines.values():
                 spine.set_visible(False)
             ax.set_title(title, fontsize=8.6, color="#193C51", loc="left", pad=10)
-            if panel == "A":
-                ax.get_yticklabels()[-1].set_fontweight("bold")
-                ax.get_yticklabels()[-1].set_color("#193C51")
-            else:
+            for row, col in np.ndindex(values.shape):
+                rgb = np.asarray(im.cmap(im.norm(values[row, col])))[:3]
+                linear_rgb = np.where(rgb <= .04045, rgb / 12.92,
+                                      ((rgb + .055) / 1.055) ** 2.4)
+                luminance = float(linear_rgb @ np.array([.2126, .7152, .0722]))
+                color = "white" if 1.05 / (luminance + .05) > (luminance + .05) / .05 else "black"
+                value_label = f"{values[row, col]:.3f}".replace("-", "\N{MINUS SIGN}")
+                text = ax.text(col, row, value_label,
+                               ha="center", va="center", color=color, fontsize=7.2,
+                               fontweight="normal", zorder=4)
+                number_annotations.append((text, ax, row, col))
+            if panel == "B":
                 negative_cells = np.argwhere(values < 0)
                 for row, col in negative_cells:
                     ax.add_patch(Rectangle((col - .445, row - .435), .89, .87,
@@ -148,9 +157,16 @@ def draw(cells: pd.DataFrame, traits: list[str]) -> dict:
             cb.ax.set_ylim(norm.vmin, norm.vmax)
             image_checks[panel] = {"shape": list(values.shape), "min": float(values.min()),
                                     "max": float(values.max()), "negative_cells": int((values < 0).sum())}
+            image_checks[panel]["value_labels"] = int(values.size)
 
         fig.canvas.draw()
         renderer = fig.canvas.get_renderer()
+        for text, ax, row, col in number_annotations:
+            box = text.get_window_extent(renderer)
+            left, bottom = ax.transData.transform((col - .4, row + .35))
+            right, top = ax.transData.transform((col + .4, row - .35))
+            if box.x0 < left or box.x1 > right or box.y0 < bottom or box.y1 > top:
+                raise ValueError(f"Value annotation extends outside its cell: {text.get_text()}")
         for item in fig.findobj(matplotlib.text.Text):
             if not item.get_visible() or not item.get_text():
                 continue
@@ -181,6 +197,20 @@ def main() -> None:
         "repeat counts and improvement counts verified."
     )
     metadata["display"]["cell_checks"] = image_checks
+    metadata["display"]["A"] = (
+        "Six models by eight traits; mean PCC labels to three decimal places."
+    )
+    metadata["display"]["B"] = (
+        "Five baselines by eight traits; mean paired delta PCC labels to three decimal places; "
+        "dashed borders identify negative differences."
+    )
+    metadata["caption_note"] = (
+        "A：6 种模型在 8 个性状上的 PCC 均值；"
+        "B：DynaGS 相对各对照模型的配对 PCC 差值均值。两个面板的数值均保留三位小数。"
+        "每次重复先合并 5 个外层测试折的折外预测，在各时间点计算 PCC 并取有效时间点均值，"
+        "再对 5 次重复取平均。ΔPCC 为同一重复、同一性状上 DynaGS 的 PCC 减去对照模型的 PCC，"
+        "正值表示 DynaGS 的 PCC 更高；虚线框表示均值小于 0。两部分分别使用各自的色标。"
+    )
     (DATA / f"{STEM}.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n",
                                        encoding="utf-8")
     print(json.dumps({"validated_runs": len(runs), "validated_pairs": len(pairs),
