@@ -30,7 +30,7 @@ $$
 
 $$
 b_m=
-\operatorname*{arg\,max}_{g\in\{0,1,2\}}
+\mathop{\mathrm{arg\thinspace max}}\limits_{g\in\lbrace 0,1,2\rbrace}
 \sum_{i\in\mathcal{I}_{\mathrm{tr}}}
 I(x_{i,m}^{\mathrm{dose}}=g)
 $$
@@ -496,36 +496,36 @@ $$
 基于中心化距离矩阵，计算第 $m$ 个 SNP 与纵向表型之间的样本距离协方差平方：
 
 $$
-\operatorname{dCov}_m^2 = \frac{1}{N_{\mathrm{tr}}^2} \sum_{i=1}^{N_{\mathrm{tr}}} \sum_{j=1}^{N_{\mathrm{tr}}} A_{ij}^{(m)}B_{ij}
+\mathop{\mathrm{dCov}}\nolimits_m^2 = \frac{1}{N_{\mathrm{tr}}^2} \sum_{i=1}^{N_{\mathrm{tr}}} \sum_{j=1}^{N_{\mathrm{tr}}} A_{ij}^{(m)}B_{ij}
 $$
 
 相应的基因型距离方差平方和表型距离方差平方分别定义为
 
 $$
-\operatorname{dVar}_m^2 = \frac{1}{N_{\mathrm{tr}}^2} \sum_{i=1}^{N_{\mathrm{tr}}} \sum_{j=1}^{N_{\mathrm{tr}}} \left(A_{ij}^{(m)}\right)^2
+\mathop{\mathrm{dVar}}\nolimits_m^2 = \frac{1}{N_{\mathrm{tr}}^2} \sum_{i=1}^{N_{\mathrm{tr}}} \sum_{j=1}^{N_{\mathrm{tr}}} \left(A_{ij}^{(m)}\right)^2
 $$
 
 $$
-\operatorname{dVar}_Y^2 = \frac{1}{N_{\mathrm{tr}}^2} \sum_{i=1}^{N_{\mathrm{tr}}} \sum_{j=1}^{N_{\mathrm{tr}}} B_{ij}^2
+\mathop{\mathrm{dVar}}\nolimits_Y^2 = \frac{1}{N_{\mathrm{tr}}^2} \sum_{i=1}^{N_{\mathrm{tr}}} \sum_{j=1}^{N_{\mathrm{tr}}} B_{ij}^2
 $$
 
 进一步计算第 $m$ 个 SNP 与纵向表型之间的样本距离相关系数：
 
 $$
-\operatorname{dCor}_m = \frac{ \sqrt{\operatorname{dCov}_m^2} }{ \left( \operatorname{dVar}_m^2 \operatorname{dVar}_Y^2 \right)^{1/4} }
+\mathop{\mathrm{dCor}}\nolimits_m = \frac{ \sqrt{\mathop{\mathrm{dCov}}\nolimits_m^2} }{ \left( \mathop{\mathrm{dVar}}\nolimits_m^2 \mathop{\mathrm{dVar}}\nolimits_Y^2 \right)^{1/4} }
 $$
 
-其中，$\operatorname{dCor}_m$ 为候选位点 $m$ 的距离相关得分。基因型或表型的距离方差为零时，得分设为零，计算中出现的微小负数平方量则作非负截断处理。
+其中，$\mathop{\mathrm{dCor}}\nolimits_m$ 为候选位点 $m$ 的距离相关得分。基因型或表型的距离方差为零时，得分设为零，计算中出现的微小负数平方量则作非负截断处理。
 
 在具体实现中，由于 SNP 剂量仅包含 0、1、2 三种取值，程序根据不同剂量类别的个体数量及类别间表型距离和计算距离协方差与距离方差，避免为每个 SNP 单独构建完整的基因型距离矩阵。表型距离矩阵在当前筛选任务中统一计算，各候选 SNP 依次使用该矩阵完成距离相关性计算。
 
-得到全部候选 SNP 的距离相关性得分后，按照 $\operatorname{dCor}_m$ 从大到小进行排序，并保留前 $K_{\mathrm{final}}$ 个位点，最终 SNP 集合表示为
+得到全部候选 SNP 的距离相关性得分后，按照 $\mathop{\mathrm{dCor}}\nolimits_m$ 从大到小进行排序，并保留前 $K_{\mathrm{final}}$ 个位点，最终 SNP 集合表示为
 
 $$
-\mathcal{J}_{\mathrm{final}} = \operatorname{TopK}_{m\in\mathcal{J}_{\mathrm{GWAS}}} \left( \operatorname{dCor}_m, K_{\mathrm{final}} \right)
+\mathcal{J}_{\mathrm{final}} = \mathop{\mathrm{TopK}}\nolimits_{m\in\mathcal{J}_{\mathrm{GWAS}}} \left( \mathop{\mathrm{dCor}}\nolimits_m, K_{\mathrm{final}} \right)
 $$
 
-其中，$\operatorname{TopK}(\cdot)$ 表示根据距离相关性得分选取指定数量位点的操作，$K_{\mathrm{final}}$ 为最终保留的 SNP 数量，由实验配置参数 screen_final_k 指定。
+其中，$\mathop{\mathrm{TopK}}\nolimits(\cdot)$ 表示根据距离相关性得分选取指定数量位点的操作，$K_{\mathrm{final}}$ 为最终保留的 SNP 数量，由实验配置参数 screen_final_k 指定。
 
 筛选完成后，将最终位点映射回原始基因型矩阵的列索引，并按照原始列顺序升序排列，得到用于模型输入的 SNP 索引集合。训练集、验证集和测试集均按照该索引集合提取对应的基因型特征，形成统一的 SNP 输入矩阵。最终筛选数量根据不同数据集的实验配置确定。
 
@@ -549,7 +549,7 @@ $$
 
 DynaGS 模型的基因型预处理分为数据集前置质量控制和划分后的训练侧处理。真实数据经第 3.3.2 节的前置质量控制形成候选矩阵，完成个体划分后，再在当前训练集中计算位点缺失率与 MAC，执行第 3.5 节的监督筛选。基因型缺失填补和表型归一化参数同样依据当前训练集估计，验证和测试个体沿用所确定的位点与参数。
 
-设训练基因型和表型为 $X_{\mathrm{tr}}$、$Y_{\mathrm{tr}}$，时间坐标为 $\boldsymbol{\tau}$。第 3.5 节的筛选过程可写为 $\mathcal{J} = \operatorname{Select} (X_{\mathrm{tr}},Y_{\mathrm{tr}};\boldsymbol{\tau})$，其中，$\operatorname{Select}(\cdot)$ 表示包含训练集质量过滤、关联筛选及候选位点精筛的处理过程，$\mathcal{J}$ 为最终保留的 SNP 原始列索引集合。
+设训练基因型和表型为 $X_{\mathrm{tr}}$、$Y_{\mathrm{tr}}$，时间坐标为 $\boldsymbol{\tau}$。第 3.5 节的筛选过程可写为 $\mathcal{J} = \mathop{\mathrm{Select}}\nolimits (X_{\mathrm{tr}},Y_{\mathrm{tr}};\boldsymbol{\tau})$，其中，$\mathop{\mathrm{Select}}\nolimits(\cdot)$ 表示包含训练集质量过滤、关联筛选及候选位点精筛的处理过程，$\mathcal{J}$ 为最终保留的 SNP 原始列索引集合。
 
 确定最终 SNP 索引集合后，对不同数据子集采用相同的列索引提取对应基因型，写为 $X_s^{\mathrm{sel}} = X_s[:,\mathcal{J}], \quad s\in\{\mathrm{tr},\mathrm{val},\mathrm{te}\}$，其中，$X_s$ 为子集 $s$ 的基因型矩阵，$X_s^{\mathrm{sel}}$ 使用统一位点集合及顺序，预选位点实验直接加载指定索引。
 

@@ -70,7 +70,7 @@ $$
 
 为减小不同 SNP 位点输入分布差异对系数学习的影响，输入矩阵先经过批归一化（Batch Normalization，BN），再由逐位点可学习权重进行缩放，并通过随机失活（Dropout）得到用于系数映射的特征矩阵：
 $$
-S=\operatorname{Dropout}\left(\operatorname{BN}(U)\odot w\right)
+S=\mathop{\mathrm{Dropout}}\nolimits\left(\mathop{\mathrm{BN}}\nolimits(U)\odot w\right)
 $$
 其中，$w\in R^{1\times M}$ 为可学习的 SNP 权重向量，$\odot$ 表示逐元素乘法，权重向量在批量维度上广播，$S\in R^{B\times M}$ 为处理后的特征矩阵。批归一化层不包含可学习的仿射参数，SNP 权重则初始化为 1，并随训练更新，以调节不同位点在宽通道中的特征贡献。
 
@@ -80,10 +80,10 @@ A_{W,0}=S\Theta_0+b_0
 $$
 
 $$
-A_{W,H}=\operatorname{reshape}\left(S\Theta_H+b_H,\ B,P,K\right)
+A_{W,H}=\mathop{\mathrm{reshape}}\nolimits\left(S\Theta_H+b_H,\ B,P,K\right)
 $$
 
-其中，$\Theta_0\in R^{M\times P}$ 和 $b_0\in R^P$ 分别为常数项映射的权重矩阵与偏置向量，$\Theta_H\in R^{M\times PK}$ 和 $b_H\in R^{PK}$ 分别为高阶系数映射的权重矩阵与偏置向量，偏置在批量维度上广播。经 $\operatorname{reshape}(\cdot)$ 进行张量形状重构后，$A_{W,H}\in R^{B\times P\times K}$ 包含各个体、各表型的高阶系数，$A_{W,0}\in R^{B\times P}$ 则包含对应的零阶系数。当 $K=0$ 时，模型仅使用常数项映射，不构建高阶系数映射层。
+其中，$\Theta_0\in R^{M\times P}$ 和 $b_0\in R^P$ 分别为常数项映射的权重矩阵与偏置向量，$\Theta_H\in R^{M\times PK}$ 和 $b_H\in R^{PK}$ 分别为高阶系数映射的权重矩阵与偏置向量，偏置在批量维度上广播。经 $\mathop{\mathrm{reshape}}\nolimits(\cdot)$ 进行张量形状重构后，$A_{W,H}\in R^{B\times P\times K}$ 包含各个体、各表型的高阶系数，$A_{W,0}\in R^{B\times P}$ 则包含对应的零阶系数。当 $K=0$ 时，模型仅使用常数项映射，不构建高阶系数映射层。
 
 将常数项系数沿最后一个维度扩展后，与高阶系数进行拼接，得到完整的轨迹系数张量 $A_W\in R^{B\times P\times(K+1)}$。记其中第 $i$ 个个体、第 $p$ 个表型对应的第 $k$ 阶系数为 $a_{i,p,k}$，则宽通道在时间点 $\tau_t$ 上的预测值表示为
 $$
@@ -111,9 +111,9 @@ DynaGS 模型的深通道以离散 SNP 类别编码为输入，通过嵌入表�
 
 卷积输出经过高斯误差线性单元（Gaussian Error Linear Unit，GELU）变换后，转置回 $(B,M,d)$，再通过残差连接与原始 SNP 嵌入相加，得到深通道的初始特征表示：
 $$
-H=E+\operatorname{GELU}\left(\operatorname{DWConv}(E)\right)
+H=E+\mathop{\mathrm{GELU}}\nolimits\left(\mathop{\mathrm{DWConv}}\nolimits(E)\right)
 $$
-其中，$\operatorname{DWConv}(\cdot)$ 表示沿 SNP 序列维度执行的逐通道一维卷积操作，包含计算所需的维度转置与恢复；$E$ 为原始 SNP 嵌入张量，$H\in R^{B\times M\times d}$ 为融合局部上下文信息后的特征张量。残差连接在引入卷积特征的同时保留原始嵌入，使局部变换与输入表示共同参与后续计算。卷积沿筛选后的 SNP 特征序列聚合相邻输入位置的信息，其邻域由输入特征的排列顺序确定，因而主要学习这一序列中的局部关联模式。局部特征提取后，张量形状仍为 $(B,M,d)$，后续线性注意力编码器在该维度上继续聚合 SNP 特征。
+其中，$\mathop{\mathrm{DWConv}}\nolimits(\cdot)$ 表示沿 SNP 序列维度执行的逐通道一维卷积操作，包含计算所需的维度转置与恢复；$E$ 为原始 SNP 嵌入张量，$H\in R^{B\times M\times d}$ 为融合局部上下文信息后的特征张量。残差连接在引入卷积特征的同时保留原始嵌入，使局部变换与输入表示共同参与后续计算。卷积沿筛选后的 SNP 特征序列聚合相邻输入位置的信息，其邻域由输入特征的排列顺序确定，因而主要学习这一序列中的局部关联模式。局部特征提取后，张量形状仍为 $(B,M,d)$，后续线性注意力编码器在该维度上继续聚合 SNP 特征。
 
 ### 4.3.2 线性注意力编码
 
@@ -191,7 +191,7 @@ $$
 门控网络由两层全连接层构成，第一层将特征维度由 $d$ 映射至 $\lfloor d/2\rfloor$，经 GELU 激活后，第二层将其映射至 $P$ 维，分别对应 $P$ 个目标表型。输出通过 Sigmoid 函数限制在 $(0,1)$ 区间，得到个体与表型相关的门控系数，计算过程为
 
 $$
-\mathbf{g}_i=\sigma\left(\Theta_2\operatorname{GELU}\left(\Theta_1\mathbf{h}_i+\mathbf{b}_1\right)+\mathbf{b}_2\right)
+\mathbf{g}_i=\sigma\left(\Theta_2\mathop{\mathrm{GELU}}\nolimits\left(\Theta_1\mathbf{h}_i+\mathbf{b}_1\right)+\mathbf{b}_2\right)
 $$
 
 其中，$\Theta_1\in R^{\lfloor d/2\rfloor\times d}$ 和 $\Theta_2\in R^{P\times\lfloor d/2\rfloor}$ 分别为两层全连接层的权重矩阵，$\mathbf{b}_1$ 和 $\mathbf{b}_2$ 为对应的偏置向量，$\sigma(\cdot)$ 表示 Sigmoid 激活函数。$\mathbf{g}_i\in R^P$ 为第 $i$ 个个体的门控系数向量，其中第 $p$ 个元素 $g_{i,p}$ 用于调节该个体在第 $p$ 个表型上的深通道预测结果。对于整个输入批次，门控网络输出形状为 $(B,P)$ 的系数矩阵，并在最后一个维度上进行扩展，得到形状为 $(B,P,1)$ 的门控张量。
