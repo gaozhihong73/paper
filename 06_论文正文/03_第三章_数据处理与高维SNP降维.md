@@ -122,11 +122,7 @@ $$
 经过归一化后，训练集、验证集和测试集的表型数据仍保持原有的三维张量结构，仅数值尺度发生变化。模型使用归一化后的表型作为监督信号，输出对应的标准化预测结果。由于模型预测值尚未处于原始表型尺度，在计算原始尺度上的预测误差及展示个体表型轨迹之前，需要进行反归一化处理。设 DynaGS 模型输出的标准化预测值为 $\hat{\tilde{y}}_{i,p,t}$，则首先通过全局标准化参数恢复残差尺度，再加回训练集平均轨迹，得到原始尺度上的预测值：
 
 $$
-\hat{y}_{i,p,t}
-=
-\hat{\tilde{y}}_{i,p,t}\sigma_p
-+\bar{r}_p
-+\mu_{p,t}
+\hat{y}_{i,p,t} = \hat{\tilde{y}}_{i,p,t}\sigma_p +\bar{r}_p +\mu_{p,t}
 $$
 
 其中，$\hat{y}_{i,p,t}$ 为恢复原始尺度后的预测表型值。该逆变换使用与训练阶段相同的标准化参数和平均轨迹，确保预测结果与原始观测值处于一致的数值尺度。数据加载模块依据固定的个体划分提取训练集、验证集和测试集，再调用归一化函数计算训练集平均轨迹及残差标准化参数。相关参数与模型训练信息共同保存，在模型推理和结果评估阶段通过统一的反归一化接口恢复预测值。所有归一化参数均由训练集拟合，验证集和测试集仅执行参数变换，从而避免其表型分布信息参与模型预处理参数的估计。
@@ -225,11 +221,7 @@ $$
 获得潜在高斯变量后，根据 Hardy–Weinberg 平衡条件下的基因型边际概率计算离散化阈值，将连续变量转换为三种基因型剂量：
 
 $$
-x_{i,m}^{\mathrm{dose}}
-=
-I\left(\ell_{i,m}>\Psi^{-1}((1-f_m)^2)\right)
-+
-I\left(\ell_{i,m}>\Psi^{-1}(1-f_m^2)\right)
+x_{i,m}^{\mathrm{dose}} = I\left(\ell_{i,m}>\Psi^{-1}((1-f_m)^2)\right) + I\left(\ell_{i,m}>\Psi^{-1}(1-f_m^2)\right)
 $$
 
 其中，$\Psi^{-1}(\cdot)$ 表示标准正态分布累积分布函数的逆函数，$I(\cdot)$ 为指示函数，条件成立时取 1，否则取 0。经过阈值映射后，第 $m$ 个位点的基因型剂量具有以下边际概率：
@@ -277,15 +269,11 @@ $$
 各阶遗传效应系数由正态随机变量生成，并使用指数衰减因子调节高阶系数的幅度：
 
 $$
-\alpha_{j,k}^{(0)}
-=
-s_g\exp(-k)\xi_{j,k}^{(a)}
+\alpha_{j,k}^{(0)} = s_g\exp(-k)\xi_{j,k}^{(a)}
 $$
 
 $$
-\delta_{j,k}^{(0)}
-=
-s_g\exp(-k)\xi_{j,k}^{(d)}
+\delta_{j,k}^{(0)} = s_g\exp(-k)\xi_{j,k}^{(d)}
 $$
 
 其中，$\xi_{j,k}^{(a)}$ 和 $\xi_{j,k}^{(d)}$ 为独立的标准正态随机变量，$s_g$ 为遗传效应的尺度参数，其计算方式为 $s_g=\frac{\mu_a c_g}{\sqrt{Q}}$。其中，$c_g=0.1$，$Q$ 为因果位点数量。经过指数衰减处理后，高阶基函数对应的随机效应系数具有较小的生成尺度。
@@ -295,14 +283,7 @@ $$
 结合第 3.4.1 节构建的加性和显性基因型编码，个体在时间点 $\tau_t$ 上的原始遗传贡献为
 
 $$
-v_{i,t}^{(0)}
-=
-\sum_{j=1}^{Q}
-\left[
-z_{i,j}^{(a)}a_j(\tau_t)
-+
-z_{i,j}^{(d)}d_j(\tau_t)
-\right]
+v_{i,t}^{(0)} = \sum_{j=1}^{Q} \left[ z_{i,j}^{(a)}a_j(\tau_t) + z_{i,j}^{(d)}d_j(\tau_t) \right]
 $$
 
 其中，$v_{i,t}^{(0)}$ 表示尚未经过时间尺度调整的遗传贡献。正式模拟实验设置上位性互作位点对数量为零，因此遗传贡献由加性和显性效应共同构成。
@@ -310,11 +291,7 @@ $$
 为使遗传贡献的幅度随群体平均生长水平变化，进一步利用平均表型轨迹构造时间尺度因子：
 
 $$
-v_{i,t}
-=
-\frac{\mu(\tau_t)}
-{\max_{1\leq s\leq T}\mu(\tau_s)}
-v_{i,t}^{(0)}
+v_{i,t} = \frac{\mu(\tau_t)} {\max_{1\leq s\leq T}\mu(\tau_s)} v_{i,t}^{(0)}
 $$
 
 其中，$v_{i,t}$ 为经过时间尺度调整的遗传贡献。该计算对同一时间点的全部个体使用相同的尺度因子，个体间差异由基因型编码和动态效应函数共同确定。将遗传贡献与群体平均表型相加，得到添加随机残差之前的潜在表型 $u_{i,t}=\mu(\tau_t)+v_{i,t}$。
@@ -322,12 +299,7 @@ $$
 随机残差根据目标遗传力和时间相关结构生成。设 $V_{g,t}$ 为时间点 $\tau_t$ 上遗传贡献 $v_{i,t}$ 的跨个体样本方差，$h_{\mathrm{target}}^2$ 为目标广义遗传力，模拟器按照以下关系确定残差方差：
 
 $$
-V_{e,t}
-=
-\max\left\{
-V_{g,t}\frac{1-h_{\mathrm{target}}^2}{h_{\mathrm{target}}^2},
-[c_e\mu(\tau_t)]^2
-\right\}
+V_{e,t} = \max\left\{ V_{g,t}\frac{1-h_{\mathrm{target}}^2}{h_{\mathrm{target}}^2}, [c_e\mu(\tau_t)]^2 \right\}
 $$
 
 其中，$V_{e,t}$ 为目标残差方差，$c_e=0.01$ 为残差方差下限的尺度参数。残差方差由目标遗传力对应的方差比例和预设下限共同确定。
@@ -348,23 +320,13 @@ $$
 观测表型由群体平均轨迹、动态遗传贡献和随机残差相加形成，并按照模拟器设置将低于 0.001 的表型值截断至 0.001：
 
 $$
-y_{i,1,t}
-=
-\max\left\{
-\mu(\tau_t)+v_{i,t}+e_{i,t},\,
-0.001
-\right\}
+y_{i,1,t} = \max\left\{ \mu(\tau_t)+v_{i,t}+e_{i,t},\, 0.001 \right\}
 $$
 
 相应的不含随机残差的表型轨迹表示为
 
 $$
-y_{i,1,t}^{\mathrm{true}}
-=
-\max\left\{
-\mu(\tau_t)+v_{i,t},\,
-0.001
-\right\}
+y_{i,1,t}^{\mathrm{true}} = \max\left\{ \mu(\tau_t)+v_{i,t},\, 0.001 \right\}
 $$
 
 其中，$y_{i,1,t}$ 为最终观测表型，$y_{i,1,t}^{\mathrm{true}}$ 为无噪声表型轨迹。当前模拟方案生成一个目标表型，因此表型索引固定为 $p=1$。
@@ -394,9 +356,7 @@ $$
 其中，$x_{i,m}^{\mathrm{dose}}$ 为第 $i$ 个个体在第 $m$ 个 SNP 位点上的有效等位基因剂量。对于二倍体基因型，第 $m$ 个位点的次要等位基因计数（Minor Allele Count，MAC）定义为
 
 $$
-\mathrm{MAC}_m
-=
-\min\left(C_m,2N_m^{\mathrm{obs}}-C_m\right)
+\mathrm{MAC}_m = \min\left(C_m,2N_m^{\mathrm{obs}}-C_m\right)
 $$
 
 MAC 由训练群体中两种等位基因的实际计数确定，位点缺失比例则按第 3.1.1 节的方法在当前训练集中计算，记为 $r_{m,\mathrm{tr}}^{\mathrm{miss}}$。
@@ -404,14 +364,7 @@ MAC 由训练群体中两种等位基因的实际计数确定，位点缺失比�
 当前筛选程序采用 MAC 不低于 5、训练集缺失率不超过 20% 的过滤条件，并要求位点至少包含一个有效基因型观测。满足条件的 SNP 原始列索引构成质量过滤后的位点集合：
 
 $$
-\mathcal{J}_{\mathrm{QC}}
-=
-\left\{
-m\ \middle|
-N_m^{\mathrm{obs}}>0,\ 
-\mathrm{MAC}_m\geq 5,\ 
-r_{m,\mathrm{tr}}^{\mathrm{miss}}\leq 0.20
-\right\}
+\mathcal{J}_{\mathrm{QC}} = \left\{ m\ \middle| N_m^{\mathrm{obs}}>0,\ \mathrm{MAC}_m\geq 5,\ r_{m,\mathrm{tr}}^{\mathrm{miss}}\leq 0.20 \right\}
 $$
 
 其中，$\mathcal{J}_{\mathrm{QC}}$ 为依据训练集原始剂量确定的保留位点集合，各元素仍对应筛选前基因型矩阵的原始列索引。
@@ -427,19 +380,13 @@ $$
 表型均值用于描述个体在全部观测时间点上的平均性状水平，其计算方式为
 
 $$
-s_{i,p}^{(\mathrm{mean})}
-=
-\frac{1}{T}\sum_{t=1}^{T}y_{i,p,t}
+s_{i,p}^{(\mathrm{mean})} = \frac{1}{T}\sum_{t=1}^{T}y_{i,p,t}
 $$
 
 曲线下面积描述观测范围内轨迹的累积水平，本文按实际时间坐标采用梯形积分计算
 
 $$
-s_{i,p}^{(\mathrm{auc})}
-=
-\sum_{t=1}^{T-1}
-\frac{y_{i,p,t}+y_{i,p,t+1}}{2}
-(\tau_{t+1}-\tau_t)
+s_{i,p}^{(\mathrm{auc})} = \sum_{t=1}^{T-1} \frac{y_{i,p,t}+y_{i,p,t+1}}{2} (\tau_{t+1}-\tau_t)
 $$
 
 其中，$\tau_t$ 是实际观测时间，$\tau_{t+1}-\tau_t$ 是相邻观测间隔。计算使用数据集配置的时间坐标，因而不同观测间隔对应的时间尺度得以保留。
@@ -447,16 +394,7 @@ $$
 线性变化斜率通过最小二乘法拟合表型与时间之间的线性关系获得，其表达式为
 
 $$
-s_{i,p}^{(\mathrm{slope})}
-=
-\frac{
-\sum_{t=1}^{T}
-(\tau_t-\bar{\tau})
-(y_{i,p,t}-\bar{y}_{i,p})
-}{
-\sum_{t=1}^{T}
-(\tau_t-\bar{\tau})^2
-}
+s_{i,p}^{(\mathrm{slope})} = \frac{ \sum_{t=1}^{T} (\tau_t-\bar{\tau}) (y_{i,p,t}-\bar{y}_{i,p}) }{ \sum_{t=1}^{T} (\tau_t-\bar{\tau})^2 }
 $$
 
 其中，$\bar{\tau}$ 为全部观测时间坐标的算术平均值，$\bar{y}_{i,p}$ 为第 $i$ 个个体第 $p$ 个表型在全部时间点上的观测均值。该统计量表示个体表型随时间变化的整体线性趋势。
@@ -478,18 +416,7 @@ $$
 在关联分析阶段，本文同时考虑 SNP 的加性剂量和显性效应编码。对于质量过滤后第 $m$ 个 SNP 位点，设其经过缺失填补的等位基因剂量为 $x_{i,m}^{\mathrm{dose}}$，则加性和显性解释变量分别定义为 $g_{i,m}^{(a)}=x_{i,m}^{\mathrm{dose}}$，$g_{i,m}^{(d)} = I(x_{i,m}^{\mathrm{dose}}=1)$。其中，$g_{i,m}^{(a)}$ 表示加性剂量，$g_{i,m}^{(d)}$ 为杂合基因型指示变量。对于第 $h$ 个动态性状，构建包含群体结构协变量的加性—显性联合线性回归模型：
 
 $$
-z_{i,h}
-=
-\beta_{0,h}
-+
-\sum_{r=1}^{R_{\mathrm{PC}}}
-\gamma_{r,h}c_{i,r}
-+
-\beta_{a,m,h}g_{i,m}^{(a)}
-+
-\beta_{d,m,h}g_{i,m}^{(d)}
-+
-\varepsilon_{i,m,h}
+z_{i,h} = \beta_{0,h} + \sum_{r=1}^{R_{\mathrm{PC}}} \gamma_{r,h}c_{i,r} + \beta_{a,m,h}g_{i,m}^{(a)} + \beta_{d,m,h}g_{i,m}^{(d)} + \varepsilon_{i,m,h}
 $$
 
 其中，$z_{i,h}$ 为第 $i$ 个个体的第 $h$ 个动态性状值，$c_{i,r}$ 为第 $r$ 个主成分得分，$\gamma_{r,h}$ 为对应的协变量回归系数；$\beta_{a,m,h}$ 和 $\beta_{d,m,h}$ 分别为第 $m$ 个 SNP 对该动态性状的加性和显性回归系数，$\varepsilon_{i,m,h}$ 为随机残差。每个 SNP 分别构建关联检验，检验原假设为 $H_0: \beta_{a,m,h} = \beta_{d,m,h} = 0$。
@@ -501,19 +428,11 @@ $$
 通过 QR 分解获得 $D$ 的正交基矩阵 $Q_D$，构造残差化投影矩阵 $M_D=I-Q_DQ_D^{\mathrm{T}}$。其中，$I$ 为单位矩阵。利用 $M_D$ 分别对动态性状和 SNP 的两类遗传解释变量进行残差化，得到
 
 $$
-\boldsymbol{z}_{h}^{*}
-=
-M_D\boldsymbol{z}_{h}
+\boldsymbol{z}_{h}^{*} = M_D\boldsymbol{z}_{h}
 $$
 
 $$
-G_m^{*}
-=
-M_D
-\begin{bmatrix}
-\boldsymbol{g}_{m}^{(a)}&
-\boldsymbol{g}_{m}^{(d)}
-\end{bmatrix}
+G_m^{*} = M_D \begin{bmatrix} \boldsymbol{g}_{m}^{(a)}& \boldsymbol{g}_{m}^{(d)} \end{bmatrix}
 $$
 
 其中，$\boldsymbol{z}_{h}^{*}$ 为去除群体结构协变量线性影响后的动态性状向量，$G_m^{*}\in R^{N_{\mathrm{tr}}\times 2}$ 为对应的残差化遗传解释变量矩阵。
@@ -521,10 +440,7 @@ $$
 根据残差化后的变量，计算 SNP 联合回归解释平方和 $\mathrm{SS}_{m,h}$ 及剩余残差平方和 $\mathrm{RSS}_{m,h}$，进而构造 F 统计量：
 
 $$
-F_{m,h}
-=
-\frac{\mathrm{SS}_{m,h}/2}
-{\mathrm{RSS}_{m,h}/\nu}
+F_{m,h} = \frac{\mathrm{SS}_{m,h}/2} {\mathrm{RSS}_{m,h}/\nu}
 $$
 
 其中，$\nu=N_{\mathrm{tr}}-R_{\mathrm{PC}}-3$ 为残差自由度，分子自由度为 2。根据自由度为 $(2,\nu)$ 的 F 分布计算该 SNP 对应动态性状的关联检验 P 值，记为 $\pi_{m,h}$。程序采用分块矩阵运算完成各 SNP 的联合关联检验，并对遗传解释变量矩阵进行可逆性检查。
@@ -538,61 +454,29 @@ $$
 对于多表型联合筛选任务，首先对不同目标表型进行尺度调整。设第 $p$ 个表型在训练集全部个体和时间点上的均值和标准差分别为 $\mu_p^{\mathrm{DC}}$ 和 $\sigma_p^{\mathrm{DC}}$，其计算方式为
 
 $$
-\mu_p^{\mathrm{DC}}
-=
-\frac{1}{N_{\mathrm{tr}}T}
-\sum_{i\in\mathcal{I}_{\mathrm{tr}}}
-\sum_{t=1}^{T}
-y_{i,p,t}
+\mu_p^{\mathrm{DC}} = \frac{1}{N_{\mathrm{tr}}T} \sum_{i\in\mathcal{I}_{\mathrm{tr}}} \sum_{t=1}^{T} y_{i,p,t}
 $$
 
 $$
-\sigma_p^{\mathrm{DC}}
-=
-\sqrt{
-\frac{1}{N_{\mathrm{tr}}T}
-\sum_{i\in\mathcal{I}_{\mathrm{tr}}}
-\sum_{t=1}^{T}
-(y_{i,p,t}-\mu_p^{\mathrm{DC}})^2
-}
+\sigma_p^{\mathrm{DC}} = \sqrt{ \frac{1}{N_{\mathrm{tr}}T} \sum_{i\in\mathcal{I}_{\mathrm{tr}}} \sum_{t=1}^{T} (y_{i,p,t}-\mu_p^{\mathrm{DC}})^2 }
 $$
 
 其中，$\mathcal{I}_{\mathrm{tr}}$ 为训练个体索引集合，$T$ 为观测时间点数量。根据上述统计量，对各表型的纵向观测值进行标准化：
 
 $$
-y_{i,p,t}^{\mathrm{DC}}
-=
-\frac{y_{i,p,t}-\mu_p^{\mathrm{DC}}}
-{\sigma_p^{\mathrm{DC}}}
+y_{i,p,t}^{\mathrm{DC}} = \frac{y_{i,p,t}-\mu_p^{\mathrm{DC}}} {\sigma_p^{\mathrm{DC}}}
 $$
 
 当某一表型的标准差接近零时，程序仅执行中心化处理。完成尺度调整后，将每个个体的全部表型观测沿特征维度拼接，构成多维表型向量
 
 $$
-\boldsymbol{y}_i^{\mathrm{DC}}
-=
-\left[
-y_{i,1,1}^{\mathrm{DC}},
-\ldots,
-y_{i,1,T}^{\mathrm{DC}},
-\ldots,
-y_{i,P,1}^{\mathrm{DC}},
-\ldots,
-y_{i,P,T}^{\mathrm{DC}}
-\right]^{\mathrm{T}}
+\boldsymbol{y}_i^{\mathrm{DC}} = \left[ y_{i,1,1}^{\mathrm{DC}}, \ldots, y_{i,1,T}^{\mathrm{DC}}, \ldots, y_{i,P,1}^{\mathrm{DC}}, \ldots, y_{i,P,T}^{\mathrm{DC}} \right]^{\mathrm{T}}
 $$
 
 其中，$\boldsymbol{y}_i^{\mathrm{DC}}\in R^{PT}$，所有训练个体构成表型矩阵 $Y_{\mathrm{tr}}^{\mathrm{DC}}\in R^{N_{\mathrm{tr}}\times PT}$。为同时说明两种筛选模式，将实际参与距离计算的个体表型向量记为 $\boldsymbol{y}_i^{\mathrm{scr}}$，定义为
 
 $$
-\boldsymbol{y}_i^{\mathrm{scr}}
-=
-\begin{cases}
-\boldsymbol{y}_i^{\mathrm{DC}},
-& \text{多表型联合筛选模式}\\[6pt]
-\left(y_{i,1,1},\ldots,y_{i,1,T}\right)^{\mathrm{T}},
-& \text{单表型非联合筛选模式}
-\end{cases}
+\boldsymbol{y}_i^{\mathrm{scr}} = \begin{cases} \boldsymbol{y}_i^{\mathrm{DC}}, & \text{多表型联合筛选模式}\\[6pt] \left(y_{i,1,1},\ldots,y_{i,1,T}\right)^{\mathrm{T}}, & \text{单表型非联合筛选模式} \end{cases}
 $$
 
 其中，$\boldsymbol{y}_i^{\mathrm{DC}}$ 为经过表型尺度调整并拼接的纵向观测向量。对于单表型非联合筛选，直接使用该表型在全部时间点上的原始观测值。
@@ -602,27 +486,11 @@ $$
 获得基因型距离矩阵和表型距离矩阵后，分别进行双重中心化处理。记基因型距离矩阵的中心化结果为 $A^{(m)}$，表型距离矩阵的中心化结果为 $B$，其元素定义为
 
 $$
-A_{ij}^{(m)}
-=
-a_{ij}^{(m)}
--
-\bar{a}_{i\cdot}^{(m)}
--
-\bar{a}_{\cdot j}^{(m)}
-+
-\bar{a}_{\cdot\cdot}^{(m)}
+A_{ij}^{(m)} = a_{ij}^{(m)} - \bar{a}_{i\cdot}^{(m)} - \bar{a}_{\cdot j}^{(m)} + \bar{a}_{\cdot\cdot}^{(m)}
 $$
 
 $$
-B_{ij}
-=
-b_{ij}
--
-\bar{b}_{i\cdot}
--
-\bar{b}_{\cdot j}
-+
-\bar{b}_{\cdot\cdot}
+B_{ij} = b_{ij} - \bar{b}_{i\cdot} - \bar{b}_{\cdot j} + \bar{b}_{\cdot\cdot}
 $$
 
 其中，$\bar{a}_{i\cdot}^{(m)}$、$\bar{a}_{\cdot j}^{(m)}$ 和 $\bar{a}_{\cdot\cdot}^{(m)}$ 依次为基因型距离矩阵的行均值、列均值和全局均值，表型距离矩阵中的同类符号采用相同定义。
@@ -630,47 +498,23 @@ $$
 基于中心化距离矩阵，计算第 $m$ 个 SNP 与纵向表型之间的样本距离协方差平方：
 
 $$
-\operatorname{dCov}_m^2
-=
-\frac{1}{N_{\mathrm{tr}}^2}
-\sum_{i=1}^{N_{\mathrm{tr}}}
-\sum_{j=1}^{N_{\mathrm{tr}}}
-A_{ij}^{(m)}B_{ij}
+\operatorname{dCov}_m^2 = \frac{1}{N_{\mathrm{tr}}^2} \sum_{i=1}^{N_{\mathrm{tr}}} \sum_{j=1}^{N_{\mathrm{tr}}} A_{ij}^{(m)}B_{ij}
 $$
 
 相应的基因型距离方差平方和表型距离方差平方分别定义为
 
 $$
-\operatorname{dVar}_m^2
-=
-\frac{1}{N_{\mathrm{tr}}^2}
-\sum_{i=1}^{N_{\mathrm{tr}}}
-\sum_{j=1}^{N_{\mathrm{tr}}}
-\left(A_{ij}^{(m)}\right)^2
+\operatorname{dVar}_m^2 = \frac{1}{N_{\mathrm{tr}}^2} \sum_{i=1}^{N_{\mathrm{tr}}} \sum_{j=1}^{N_{\mathrm{tr}}} \left(A_{ij}^{(m)}\right)^2
 $$
 
 $$
-\operatorname{dVar}_Y^2
-=
-\frac{1}{N_{\mathrm{tr}}^2}
-\sum_{i=1}^{N_{\mathrm{tr}}}
-\sum_{j=1}^{N_{\mathrm{tr}}}
-B_{ij}^2
+\operatorname{dVar}_Y^2 = \frac{1}{N_{\mathrm{tr}}^2} \sum_{i=1}^{N_{\mathrm{tr}}} \sum_{j=1}^{N_{\mathrm{tr}}} B_{ij}^2
 $$
 
 进一步计算第 $m$ 个 SNP 与纵向表型之间的样本距离相关系数：
 
 $$
-\operatorname{dCor}_m
-=
-\frac{
-\sqrt{\operatorname{dCov}_m^2}
-}{
-\left(
-\operatorname{dVar}_m^2
-\operatorname{dVar}_Y^2
-\right)^{1/4}
-}
+\operatorname{dCor}_m = \frac{ \sqrt{\operatorname{dCov}_m^2} }{ \left( \operatorname{dVar}_m^2 \operatorname{dVar}_Y^2 \right)^{1/4} }
 $$
 
 其中，$\operatorname{dCor}_m$ 为候选位点 $m$ 的距离相关得分。基因型或表型的距离方差为零时，得分设为零，计算中出现的微小负数平方量则作非负截断处理。
@@ -680,13 +524,7 @@ $$
 得到全部候选 SNP 的距离相关性得分后，按照 $\operatorname{dCor}_m$ 从大到小进行排序，并保留前 $K_{\mathrm{final}}$ 个位点。最终 SNP 集合表示为
 
 $$
-\mathcal{J}_{\mathrm{final}}
-=
-\operatorname{TopK}_{m\in\mathcal{J}_{\mathrm{GWAS}}}
-\left(
-\operatorname{dCor}_m,
-K_{\mathrm{final}}
-\right)
+\mathcal{J}_{\mathrm{final}} = \operatorname{TopK}_{m\in\mathcal{J}_{\mathrm{GWAS}}} \left( \operatorname{dCor}_m, K_{\mathrm{final}} \right)
 $$
 
 其中，$\operatorname{TopK}(\cdot)$ 表示根据距离相关性得分选取指定数量位点的操作，$K_{\mathrm{final}}$ 为最终保留的 SNP 数量，由实验配置参数 screen_final_k 指定。
