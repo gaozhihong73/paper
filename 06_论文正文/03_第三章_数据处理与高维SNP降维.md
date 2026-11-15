@@ -299,7 +299,7 @@ $$
 随机残差根据目标遗传力和时间相关结构生成。设 $V_{g,t}$ 为时间点 $\tau_t$ 上遗传贡献 $v_{i,t}$ 的跨个体样本方差，$h_{\mathrm{target}}^2$ 为目标广义遗传力，模拟器按照以下关系确定残差方差：
 
 $$
-V_{e,t} = \max\left\{ V_{g,t}\frac{1-h_{\mathrm{target}}^2}{h_{\mathrm{target}}^2}, [c_e\mu(\tau_t)]^2 \right\}
+V_{e,t} = \max\left\lbrace  V_{g,t}\frac{1-h_{\mathrm{target}}^2}{h_{\mathrm{target}}^2}, [c_e\mu(\tau_t)]^2 \right\rbrace
 $$
 
 其中，$V_{e,t}$ 为目标残差方差，$c_e=0.01$ 为残差方差下限的尺度参数。残差方差由目标遗传力对应的方差比例和预设下限共同确定。
@@ -320,13 +320,13 @@ $$
 观测表型由群体平均轨迹、动态遗传贡献和随机残差相加形成，并按照模拟器设置将低于 0.001 的表型值截断至 0.001：
 
 $$
-y_{i,1,t} = \max\left\{ \mu(\tau_t)+v_{i,t}+e_{i,t},\, 0.001 \right\}
+y_{i,1,t} = \max\left\lbrace  \mu(\tau_t)+v_{i,t}+e_{i,t},\thinspace  0.001 \right\rbrace
 $$
 
 相应的不含随机残差的表型轨迹表示为
 
 $$
-y_{i,1,t}^{\mathrm{true}} = \max\left\{ \mu(\tau_t)+v_{i,t},\, 0.001 \right\}
+y_{i,1,t}^{\mathrm{true}} = \max\left\lbrace  \mu(\tau_t)+v_{i,t},\thinspace  0.001 \right\rbrace
 $$
 
 其中，$y_{i,1,t}$ 为最终观测表型，$y_{i,1,t}^{\mathrm{true}}$ 为无噪声表型轨迹。当前模拟方案生成一个目标表型，因此表型索引固定为 $p=1$。
@@ -364,7 +364,7 @@ MAC 由训练群体中两种等位基因的实际计数确定，位点缺失比�
 当前筛选程序采用 MAC 不低于 5、训练集缺失率不超过 20% 的过滤条件，并要求位点至少包含一个有效基因型观测。满足条件的 SNP 原始列索引构成质量过滤后的位点集合：
 
 $$
-\mathcal{J}_{\mathrm{QC}} = \left\{ m\ \middle| N_m^{\mathrm{obs}}>0,\ \mathrm{MAC}_m\geq 5,\ r_{m,\mathrm{tr}}^{\mathrm{miss}}\leq 0.20 \right\}
+\mathcal{J}_{\mathrm{QC}} = \left\lbrace  m\ \middle| N_m^{\mathrm{obs}}>0,\ \mathrm{MAC}_m\geq 5,\ r_{m,\mathrm{tr}}^{\mathrm{miss}}\leq 0.20 \right\rbrace
 $$
 
 其中，$\mathcal{J}_{\mathrm{QC}}$ 为依据训练集原始剂量确定的保留位点集合，各元素仍对应筛选前基因型矩阵的原始列索引。
@@ -476,7 +476,7 @@ $$
 其中，$\boldsymbol{y}_i^{\mathrm{DC}}\in R^{PT}$，所有训练个体构成表型矩阵 $Y_{\mathrm{tr}}^{\mathrm{DC}}\in R^{N_{\mathrm{tr}}\times PT}$。为同时说明两种筛选模式，将实际参与距离计算的个体表型向量记为 $\boldsymbol{y}_i^{\mathrm{scr}}$，定义为
 
 $$
-\boldsymbol{y}_i^{\mathrm{scr}} = \begin{cases} \boldsymbol{y}_i^{\mathrm{DC}}, & \text{多表型联合筛选模式}\\[6pt] \left(y_{i,1,1},\ldots,y_{i,1,T}\right)^{\mathrm{T}}, & \text{单表型非联合筛选模式} \end{cases}
+\boldsymbol{y}_i^{\mathrm{scr}} = \begin{cases} \boldsymbol{y}_i^{\mathrm{DC}}, & \text{多表型联合筛选模式}\cr  \left(y_{i,1,1},\ldots,y_{i,1,T}\right)^{\mathrm{T}}, & \text{单表型非联合筛选模式} \end{cases}
 $$
 
 其中，$\boldsymbol{y}_i^{\mathrm{DC}}$ 为经过表型尺度调整并拼接的纵向观测向量。对于单表型非联合筛选，直接使用该表型在全部时间点上的原始观测值。
